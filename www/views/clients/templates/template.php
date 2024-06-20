@@ -13,10 +13,10 @@
 <body>
     <header>
         <div class="container top d-flex justify-content-between align-items-center px-3">
-            <div class="brand d-flex align-items-center">
+            <a class="brand d-flex align-items-center" href="/controllers/clients/home-ctrl.php">
                 <img class="logo" src="/public/assets/img/car.png" alt="logo">
                 <p class="brandName ms-2 mb-0">Rent My Ride</p>
-            </div>
+            </a>
             <div class="position-relative w-25">
                 <input id="search" type="search" class="form-control rounded" placeholder="Rechercher" />
                 <div id="searchResults" class="text-decoration-none text-center"></div>

@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS `rents`;
-DROP TABLE IF EXISTS `vehicles`;
+DROP TABLE IF EXISTS `vehicles`; 
 DROP TABLE IF EXISTS `categories`;
 DROP TABLE IF EXISTS `clients`;
 
