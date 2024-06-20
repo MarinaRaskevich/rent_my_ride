@@ -1,0 +1,196 @@
+@font-face {
+  font-family: "Ubuntu";
+  src: url(/public/assets/fonts/Ubuntu-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url(/public/assets/fonts/Ubuntu-Bold.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url(/public/assets/fonts/MMSans-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url(/public/assets/fonts/MMSans-Bold.ttf);
+  font-weight: 600;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  min-height: 88vh;
+}
+
+main > div > .row {
+  min-height: 88vh;
+}
+
+#content {
+  background-color: #e5e5e5;
+}
+
+/* footer {
+  background-color: #37373e;
+  flex-shrink: 0;
+} */
+
+.access_avatar {
+  width: 30px;
+}
+
+.top {
+  height: 12vh;
+}
+
+.brand,
+.access {
+  color: #0053af;
+  width: 20%;
+}
+
+.access_data p {
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.access_data p span {
+  font-weight: bold;
+}
+
+.brandName {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.3em;
+  text-shadow: 3px 3px 5px rgb(78, 70, 70);
+}
+
+.nav-link:hover {
+  box-shadow: 0px 0px 3px 3px rgba(72, 77, 148, 0.5);
+}
+
+.navbar_home {
+  background-color: #0053af;
+  border-radius: 4px;
+}
+
+.navbar_home a {
+  color: white;
+}
+
+.navbar_home a:hover {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: #0153af;
+}
+
+/***** LIST.PHP CATEGORIES  ********/
+.categoryList table {
+  width: 50%;
+  border-collapse: collapse;
+  margin-top: 6%;
+  margin-bottom: 3%;
+}
+
+.categoryList table th,
+tr,
+td {
+  padding: 1.5%;
+}
+
+.categoryList thead {
+  border-bottom: 2px solid #0053af;
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.categoryList tbody {
+  font-size: 1.2em;
+}
+
+/************ LIST.PHP VEHICLES  ************/
+.vehiclesList {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.vehiclesList table {
+  width: 95%;
+  border-collapse: collapse;
+  margin-top: 6%;
+  margin-bottom: 3%;
+}
+
+.vehicleList table th,
+tr,
+td {
+  padding: 10px;
+}
+
+.vehiclesList thead {
+  border-bottom: 2px solid #0053af;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.vehiclesList tbody {
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.vehicle_img {
+  width: 100%;
+}
+
+/* CLIENTS */
+.hero {
+  height: 65vh;
+  background-image: url(/public/assets/img/hero.png);
+  background-size: cover;
+}
+
+.card {
+  height: 55vh;
+}
+
+/* SEARCH */
+
+#searchResults {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  width: 100%;
+  left: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#searchResults a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+#searchResults a:hover {
+  background-color: #f0f0f0;
+}

@@ -1,0 +1,226 @@
+/******** HEADER.PHP ********/
+body {
+  font-family: "Ubuntu", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  min-height: 88vh;
+}
+
+main > div > .row {
+  min-height: 88vh;
+}
+
+#content {
+  background-color: #e5e5e5;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+.hero {
+  height: 60vh;
+  background-image: url(/public/assets/img/hero.png);
+  background-size: cover;
+}
+
+.brand,
+.access {
+  display: flex;
+  align-items: center;
+  color: #0053af;
+}
+
+.brand {
+  width: 20%;
+}
+
+a {
+  text-decoration: none;
+  color: #0153af;
+}
+
+.access {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.access_data p {
+  margin: 0;
+  font-size: 0.8em;
+  margin-left: 8%;
+}
+
+.access_data p span {
+  font-weight: bold;
+}
+
+.brandName {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.3em;
+  text-shadow: 3px 3px 5px rgb(78, 70, 70);
+}
+
+.logo {
+  margin-right: 6%;
+}
+
+.access_avatar {
+  width: 30px;
+}
+
+main {
+  background-color: #90a3bf32;
+  height: max-content;
+}
+
+/************************* HOME.PHP **********************************/
+h1 {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/****** Cards ******/
+.cards {
+  padding: 0 3% 3% 3%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.cards {
+  box-sizing: border-box;
+}
+
+.card {
+  height: 300px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 2% 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.description_brand {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+
+.description_category {
+  margin-top: 0;
+  color: dimgrey;
+  font-size: 0.8em;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card_reservation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: 0.2s linear;
+  background: #0053af;
+  height: 30px;
+}
+
+.reservation_link {
+  color: white;
+}
+
+.card button:hover {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #3c82f8;
+}
+
+.reservation_price {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/***** Pagination *****/
+ul {
+  padding: 0 8%;
+  display: grid;
+  grid-template-areas: "previous numbers next";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
+  padding-bottom: 3%;
+}
+
+ul {
+  box-sizing: border-box;
+}
+
+ul img {
+  width: 5%;
+}
+
+li {
+  display: inline;
+}
+
+.previous {
+  grid-area: previous;
+}
+
+.numbers {
+  grid-area: numbers;
+}
+
+.next {
+  grid-area: next;
+}
+
+.next a {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.disabled {
+  display: none;
+}
+
+.active {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+/***** Sort *****/
+.sort {
+  padding: 0 3%;
+  display: flex;
+  align-items: center;
+}
+
+.sort option,
+.sort select {
+  border: 1px solid #0053af;
+}
+
+.sort p {
+  padding-right: 2%;
+}
+
+/******** FOOTER.PHP ********/
+
+footer {
+  padding: 3% 4% 0 4%;
+  text-align: center;
+}
