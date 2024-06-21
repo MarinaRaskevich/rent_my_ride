@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/../../../models/Vehicle.php';
-require __DIR__ . '/../../../helpers/Validator.php';
 require_once __DIR__ . '/../../../models/Category.php';
+require __DIR__ . '/../../../helpers/Validator.php';
+require __DIR__ . '/../../../helpers/http_helper.php';
 
-$title = 'Véhicules';
+$title = 'Création de véhicules';
 
 try {
     $category = new Category();
@@ -96,5 +97,4 @@ try {
     //include __DIR__ . '/../../../views/error.php';
 }
 
-require_once __DIR__ . '/../../../views/dashboard/vehicles/add.php';
-require_once __DIR__ . '/../../../views/dashboard/templates/template.php';
+renderView('dashboard/vehicles/add', 'dashboard', compact('title', 'categoryList'));

@@ -1,7 +1,7 @@
 <?php
-
+require __DIR__ . '/../../helpers/http_helper.php';
 
 $title = 'Accueil';
-$script = 'script';
-require_once __DIR__ . '/../../views/dashboard/home.php';
-require_once __DIR__ . '/../../views/dashboard/templates/template.php';
+
+
+renderView('dashboard/home', 'dashboard', compact('title'));

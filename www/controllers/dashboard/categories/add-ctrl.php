@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../../../models/Category.php';
 require __DIR__ . '/../../../helpers/Validator.php';
+require __DIR__ . '/../../../helpers/http_helper.php';
 
-$title = 'Catégories';
+$title = 'Création de catégorie';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -40,5 +41,6 @@ try {
     // include __DIR__ . '/../../../views/error.php';
 }
 
-require_once __DIR__ . '/../../../views/dashboard/categories/add.php';
-require_once __DIR__ . '/../../../views/dashboard/templates/template.php';
+$title = "Création de catégorie";
+
+renderView('dashboard/categories/add', 'dashboard', compact('title'));

@@ -154,8 +154,8 @@ td {
   text-align: center;
 }
 
-.vehicle_img {
-  width: 100%;
+.img-cell {
+  width: 15%;
 }
 
 /* CLIENTS */
@@ -167,6 +167,10 @@ td {
 
 .card {
   height: 55vh;
+}
+
+.vehicle-img {
+  filter: drop-shadow(0 15px 10px rgba(0, 0, 0, 0.5));
 }
 
 /* SEARCH */

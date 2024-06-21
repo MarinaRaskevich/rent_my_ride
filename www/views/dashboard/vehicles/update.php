@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-<div class="row d-flex justify-content-center mt-5">
+<div class="row d-flex justify-content-center my-5">
     <div class="col-8">
         <p class="text-center fw-bold fs-4">Modifier les informations sur la voiture</p>
         <form method="post" enctype="multipart/form-data" class="vehicle_form">

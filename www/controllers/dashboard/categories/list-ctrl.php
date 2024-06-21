@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../models/Category.php';
+require __DIR__ . '/../../../helpers/http_helper.php';
 
 $title = 'Catégories';
 
@@ -10,5 +11,5 @@ try {
     // include __DIR__ . '/../../../views/error.php';
 }
 
-require_once __DIR__ . '/../../../views/dashboard/categories/list.php';
-require_once __DIR__ . '/../../../views/dashboard/templates/template.php';
+
+renderView('dashboard/categories/list', 'dashboard', compact('title', 'categoryList'));

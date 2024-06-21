@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../models/Category.php';
 
-$title = 'Catégories';
-
 try {
     $id = $_GET['id'];
     $category = new Category();

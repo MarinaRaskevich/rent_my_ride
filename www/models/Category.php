@@ -40,12 +40,7 @@ class Category extends BaseModel
         $sql = 'INSERT INTO `categories`(`name`) VALUES (:name);';
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':name', $this->getName(), PDO::PARAM_STR);
-        $sthExecute = $sth->execute();
-        if ($sthExecute) {
-            return true;
-        } else {
-            return false;
-        }
+        return $sth->execute();
     }
 
     //Retourner toutes les données de la base
@@ -80,7 +75,7 @@ class Category extends BaseModel
     }
 
     // Vérifiсation si le nom de catégorie saisi existe déjà dans la base de données
-    public function isExiste($name)
+    public function isExiste($name): bool
     {
         $sql = 'SELECT count(*) FROM `categories` WHERE `name` = :name;';
         $sth = $this->db->prepare($sql);
@@ -94,7 +89,7 @@ class Category extends BaseModel
     }
 
     //Supprimer une catégorie
-    public function delete($id)
+    public function delete($id): bool
     {
         $sql = 'DELETE FROM `categories` WHERE `id_category` = :id_category;';
         $sth = $this->db->prepare($sql);

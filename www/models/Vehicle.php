@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../helpers/BaseModel.php';
 
+
 class Vehicle extends BaseModel
 {
     private int $id_vehicle;
@@ -209,7 +210,7 @@ class Vehicle extends BaseModel
 
     public function getOne($id)
     {
-        $sql = 'SELECT * FROM `vehicles` WHERE `id_vehicle` = :id_vehicle;';
+        $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category` WHERE `id_vehicle` = :id_vehicle;';
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':id_vehicle', $id, PDO::PARAM_INT);
         $sth->execute();

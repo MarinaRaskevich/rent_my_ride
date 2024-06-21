@@ -20,10 +20,10 @@
                 </select>
             </form>
         </div>
-        <div class="row g-2">
+        <div class="row g-3">
             <?php foreach ($vehiclesList as $vehicle) { ?>
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title"><?= $vehicle['brand'] . ' ' . $vehicle['model'] ?></h5>

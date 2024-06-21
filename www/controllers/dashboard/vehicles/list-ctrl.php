@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../models/Vehicle.php';
+require __DIR__ . '/../../../helpers/http_helper.php';
 
 $title = 'Véhicules';
 
@@ -19,5 +20,4 @@ try {
     include __DIR__ . '/../../../views/error.php';
 }
 
-require_once __DIR__ . '/../../../views/dashboard/vehicles/list.php';
-require_once __DIR__ . '/../../../views/dashboard/templates/template.php';
+renderView('dashboard/vehicles/list', 'dashboard', compact('title', 'vehiclesList', 'order'));

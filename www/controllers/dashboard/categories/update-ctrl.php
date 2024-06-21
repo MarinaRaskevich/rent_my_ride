@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../../../models/Category.php';
 require __DIR__ . '/../../../helpers/Validator.php';
+require __DIR__ . '/../../../helpers/http_helper.php';
 
-$title = 'Catégories';
+$title = 'Modifier la catégories';
 
 try {
     $id = intval($_GET['id']);
@@ -37,5 +38,5 @@ try {
     $errors = $e->getMessage();
     // include __DIR__ . '/../../../views/error.php';
 }
-require_once __DIR__ . '/../../../views/dashboard/categories/update.php';
-require_once __DIR__ . '/../../../views/dashboard/templates/template.php';
+
+renderView('dashboard/categories/update', 'dashboard', compact('title', 'oneName'));

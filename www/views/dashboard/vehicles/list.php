@@ -6,7 +6,7 @@
                 <th>Photo</th>
                 <th><a href="?column=brand&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Marque <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></i></a></th>
                 <th>Modèle</th>
-                <th>Numéro d'immatriculation</th>
+                <th>Numéro d'immat.</th>
                 <th>Kilométrage</th>
                 <th><a href="?column=name&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Catégorie <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></a></th>
                 <th>Date de création</th>
@@ -19,8 +19,8 @@
                 if (empty($vehicle['deleted_at'])) {
             ?>
                     <tr>
-                        <td width="150">
-                            <div><img class="vehicle_img" src="/public/uploads/<?= $vehicle['picture'] ?>" alt="voiture"></div>
+                        <td class="img-cell">
+                            <div><img class="w-100" src="/public/uploads/<?= $vehicle['picture'] ?>" alt="voiture"></div>
                         </td>
                         <td><?= $vehicle['brand'] ?></td>
                         <td><?= $vehicle['model'] ?></td>

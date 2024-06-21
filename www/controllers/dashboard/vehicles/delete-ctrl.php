@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../models/Vehicle.php';
 
-$title = 'Véhicles';
-
 try {
     $id = $_GET['id'];
 
