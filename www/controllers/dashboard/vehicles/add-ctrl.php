@@ -97,4 +97,4 @@ try {
     //include __DIR__ . '/../../../views/error.php';
 }
 
-renderView('dashboard/vehicles/add', 'dashboard', compact('title', 'categoryList'));
+renderView('dashboard/vehicles/add', compact('title', 'categoryList'));

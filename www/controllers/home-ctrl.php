@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../models/Category.php';
-require_once __DIR__ . '/../../models/Vehicle.php';
+require_once __DIR__ . '/../models/Category.php';
+require_once __DIR__ . '/../models/Vehicle.php';
 
 $title = 'Rent My Ride';
 $script = 'search';
@@ -44,5 +44,5 @@ try {
     //throw $th;
 }
 
-require_once __DIR__ . '/../../views/clients/home.php';
-require_once __DIR__ . '/../../views/clients/templates/template.php';
+require_once __DIR__ . '/../views/home.php';
+require_once __DIR__ . '/../views/templates/template.php';

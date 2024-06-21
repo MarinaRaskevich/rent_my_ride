@@ -53,7 +53,7 @@ class Category extends BaseModel
     }
 
     //Retourner une catégorie
-    public function getOne($id)
+    public function getOne($id): mixed
     {
         $sql = 'SELECT * FROM `categories` WHERE `id_category` = :id_category;';
         $sth = $this->db->prepare($sql);

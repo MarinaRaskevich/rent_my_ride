@@ -4,14 +4,15 @@ require_once __DIR__ . '/../../../models/Category.php';
 require __DIR__ . '/../../../helpers/Validator.php';
 require __DIR__ . '/../../../helpers/http_helper.php';
 
-$title = 'Modifier la véhicule';
+$title = 'Modification d\'un véhicule';
 
-try {
-    $category = new Category();
-    $categoryList = $category->getAll();
-    $id = intval($_GET['id']);
+$id = $_GET['id'] ?? null;
+if (is_null($id)) {
+    redirectToRoute('/controllers/dashboard/vehicles/list-ctrl.php');
+};
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    try {
         ////////// traitement du formulaire ///////////
         ////////////// brand /////////////
         $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -92,21 +93,28 @@ try {
             $vehicle = new Vehicle($brand, $model, $registration, intval($mileage), $fileName);
             $vehicle->setId_category(intval($categoryId));
             $vehicle->setUpdated_at($updated_at);
-            $vehicle->setId_vehicle($id);
+            $vehicle->setId_vehicle(intval($id));
             $isOk = $vehicle->update();
             if ($isOk) {
                 header('Location:/controllers/dashboard/vehicles/list-ctrl.php');
                 exit;
             }
         }
+    } catch (Exception $e) {
+        $errors = $e->getMessage();
+        // include __DIR__ . '/../../../views/error.php';
     }
+}
+
+try {
+    $category = new Category();
+    $categoryList = $category->getAll();
 
     $vehicle = new Vehicle();
     $oneVehicle = $vehicle->getOne($id);
-} catch (Exception $e) {
-    $errors = $e->getMessage();
-    // include __DIR__ . '/../../../views/error.php';
+} catch (\Throwable $th) {
+    //throw $th;
 }
 
 
-renderView('dashboard/vehicles/update', 'dashboard', compact('title', 'oneVehicle', 'categoryList'));
+renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList'));

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../models/Vehicle.php';
+require_once __DIR__ . '/../models/Vehicle.php';
 
 try {
     if (!isset($_GET['id'])) {
@@ -13,5 +13,5 @@ try {
     //throw $th;
 }
 
-require_once __DIR__ . '/../../views/clients/vehicle-detail.php';
-require_once __DIR__ . '/../../views/clients/templates/template.php';
+require_once __DIR__ . '/../views/vehicle-detail.php';
+require_once __DIR__ . '/../views/templates/template.php';

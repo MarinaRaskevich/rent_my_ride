@@ -20,4 +20,4 @@
 // dashboard/categories/add
 
 // require_once './controllers/' . $path . '-ctrl.php';
-require_once './controllers/clients/home-ctrl.php';
+require_once './controllers/home-ctrl.php';

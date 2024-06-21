@@ -20,4 +20,4 @@ try {
     include __DIR__ . '/../../../views/error.php';
 }
 
-renderView('dashboard/vehicles/list', 'dashboard', compact('title', 'vehiclesList', 'order'));
+renderView('dashboard/vehicles/list', compact('title', 'vehiclesList', 'order'));

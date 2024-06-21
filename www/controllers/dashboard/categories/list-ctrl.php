@@ -12,4 +12,4 @@ try {
 }
 
 
-renderView('dashboard/categories/list', 'dashboard', compact('title', 'categoryList'));
+renderView('dashboard/categories/list', compact('title', 'categoryList'));

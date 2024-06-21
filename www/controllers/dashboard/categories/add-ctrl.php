@@ -43,4 +43,4 @@ try {
 
 $title = "Création de catégorie";
 
-renderView('dashboard/categories/add', 'dashboard', compact('title'));
+renderView('dashboard/categories/add', compact('title'));

@@ -1,5 +1,5 @@
 <?php ob_start(); ?>
-<div class="container h-100 my-3">
+<div class="container h-100 py-4">
     <div class="row h-100">
         <div class="col-7 d-flex align-items-center">
             <img src="/public/uploads/<?= $vehicle->picture ?>" alt="" class="w-100 vehicle-img ">
@@ -9,9 +9,8 @@
             <p>Catégorie: <?= $vehicle->name ?></p>
             <p>Numéro d'immatriculation: <?= $vehicle->registration ?></p>
             <p>Kilométrage: <?= $vehicle->mileage ?></p>
-            <a href="/controllers/clients/reservation-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary">Réserver</a>
+            <a href="/controllers/booking-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary">Réserver</a>
         </div>
     </div>
 </div>
-
 <?php $content = ob_get_clean(); ?>

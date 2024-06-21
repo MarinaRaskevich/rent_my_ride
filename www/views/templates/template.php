@@ -13,7 +13,7 @@
 <body>
     <header>
         <div class="container top d-flex justify-content-between align-items-center px-3">
-            <a class="brand d-flex align-items-center" href="/controllers/clients/home-ctrl.php">
+            <a class="brand d-flex align-items-center" href="/controllers/home-ctrl.php">
                 <img class="logo" src="/public/assets/img/car.png" alt="logo">
                 <p class="brandName ms-2 mb-0">Rent My Ride</p>
             </a>
