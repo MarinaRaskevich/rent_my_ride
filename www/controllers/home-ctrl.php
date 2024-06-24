@@ -3,7 +3,7 @@ require_once __DIR__ . '/../models/Category.php';
 require_once __DIR__ . '/../models/Vehicle.php';
 
 $title = 'Rent My Ride';
-$script = 'search';
+$script = 'script';
 
 try {
     $category = new Category();

@@ -10,11 +10,11 @@ class RegexRule
 
     public function isValid($data): bool
     {
-        if ($this->regex == 'registration') {
-            return filter_var($data, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/' . REGEX_REGISTRATION . '/')));
-        } else if ($this->regex == 'mileage') {
-            return filter_var($data, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/' . REGEX_MILEAGE . '/')));
-        }
+        // if ($this->regex == 'registration') {
+        //     return filter_var($data, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/' . $this->regex . '/')));
+        // } else if ($this->regex == 'mileage') {
+        return filter_var($data, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/' . constant($this->regex)  . '/')));
+        // }
     }
     public function message($property): string
     {

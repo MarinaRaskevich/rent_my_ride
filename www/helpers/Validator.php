@@ -2,13 +2,15 @@
 require 'validatorRules/RequiredRule.php';
 require 'validatorRules/MaxRule.php';
 require 'validatorRules/RegexRule.php';
+require 'validatorRules/EmailRule.php';
 
 class Validator
 {
     private static $classContainer = [
         'required' => RequiredRule::class,
         'max' => MaxRule::class,
-        'regex' => RegexRule::class
+        'regex' => RegexRule::class,
+        'email' => EmailRule::class
         // 'date' => DateRule::class,
     ];
     private static $errors;

@@ -63,8 +63,8 @@ try {
         $rules = [
             'brand' => 'required|max:50',
             'model' => 'required|max:50',
-            'registration' => 'required|regex:registration',
-            'mileage' => 'required|regex:mileage',
+            'registration' => 'required|regex:REGEX_REGISTRATION',
+            'mileage' => 'required|regex:REGEX_MILEAGE',
             'categoryId' => 'required'
         ];
 
