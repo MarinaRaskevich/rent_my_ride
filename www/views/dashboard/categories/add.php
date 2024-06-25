@@ -10,14 +10,10 @@
                 <div class="col-8">
                     <form action="?page=categories/add" method="POST">
                         <label for="newCategoryName" class="form-label fw-bold mb-2">Entrez une nouvelle catégorie</label>
-                        <input type="text" id="newCategoryName" name="newCategoryName" class="form-control">
+                        <input type="text" id="newCategoryName" name="newCategoryName" class="form-control" value="<?= $data['newCategoryName'] ?? '' ?>" required>
                         <button type="submit" class="btn btn-primary mt-2">Ajouter</button>
                     </form>
-                    <div class="error text-danger"><?php if (isset($errors['newCategoryName'])) {
-                                                        foreach ($errors['newCategoryName'] as $error) {
-                                                            echo $error;
-                                                        }
-                                                    } ?></div>
+                    <span class="text-danger small"><?= $errors['newCategoryName'][0] ?? '' ?></span>
                 </div>
             </div>
         </div>

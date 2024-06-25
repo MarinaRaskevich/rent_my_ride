@@ -1,5 +1,7 @@
 <?php
 $sectionName = 'Catégorie';
+$errors = [];
+$data = [];
 
 try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -19,7 +21,7 @@ try {
 
         if (empty($errors)) {
             $category = new Category();
-            $isExiste = $category->isExiste($newCategoryName);
+            $isExiste = $category->isExist('name', $newCategoryName);
             if (!$isExiste) {
                 $category = new Category($newCategoryName);
                 $isOk = $category->insert();
@@ -32,11 +34,11 @@ try {
             }
         }
     }
-} catch (Exception $e) {
-    $errors = $e->getMessage();
-    // include __DIR__ . '/../../../views/error.php';
+} catch (\PDOException $ex) {
+    $error = $ex->getMessage();
+    renderView('404');
 }
 
 $title = "Création de catégorie";
 
-renderView('dashboard/categories/add', compact('title', 'sectionName'));
+renderView('dashboard/categories/add', compact('title', 'sectionName', 'errors', 'data'));

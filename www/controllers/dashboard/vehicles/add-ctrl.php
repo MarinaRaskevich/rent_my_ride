@@ -2,29 +2,26 @@
 
 $title = 'Création de véhicules';
 $sectionName = 'Véhicules';
+$errors = [];
+$data = [];
 
 try {
-    $category = new Category();
-    $categoryList = $category->getAll();
+    $categoryModel = new Category();
+    $categoryList = $categoryModel->getAll();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ////////// traitement du formulaire ///////////
-        ////////////// brand /////////////
         $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ////////////// model /////////////
         $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ///////////// registration ///////////
         $registration = filter_input(INPUT_POST, 'registration', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ///////////// mileage ///////////
         $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
-
-        ///////////// category ///////////
         $categoryId = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);
 
-        ///////////// picture ///////////
+
+        if (!$categoryModel->isExist('id', $categoryId)) {
+            throw new Exception('Cette catégorie est inconnue');
+        }
+
         if (!empty($_FILES['picture']['name'])) {
             if ($_FILES['picture']['type'] != 'image/png') {
                 if ($_FILES['picture']['type'] != 'image/jpg') {
@@ -90,8 +87,13 @@ try {
         }
     }
 } catch (\PDOException $e) {
-    $errors = $e->getMessage();
-    //include __DIR__ . '/../../../views/error.php';
+    $error = $e->getMessage();
+    var_dump($error);
+    // renderView('404');
+} catch (Exception $e) {
+    $error = $e->getMessage();
+    var_dump($error);
+    // renderView('404');
 }
 
-renderView('dashboard/vehicles/add', compact('title', 'categoryList', 'sectionName'));
+renderView('dashboard/vehicles/add', compact('title', 'categoryList', 'sectionName', 'errors', 'data'));

@@ -11,42 +11,26 @@
                     <form method="POST" enctype="multipart/form-data" class="vehicle_form">
                         <div class="mb-3">
                             <label for="brand" class="form-label fw-bold">Marque <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="brand" name="brand" maxlength="50" placeholder="ex. Renault" value="<?= $brand ?? '' ?>" required>
-                            <div class="error small text-danger"><?php if (isset($errors['brand'])) {
-                                                                        foreach ($errors['brand'] as $error) {
-                                                                            echo $error;
-                                                                        }
-                                                                    } ?></div>
+                            <input class="form-control" type="text" id="brand" name="brand" maxlength="50" placeholder="ex. Renault" value="<?= $data['brand'] ?? '' ?>" required>
+                            <span class="small text-danger"><?= $errors['brand'][0] ?? '' ?></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="model" class="form-label fw-bold">Modèle <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="model" name="model" maxlength="50" placeholder="ex. Twingo" value="<?= $model ?? '' ?>" required>
-                            <div class="error small text-danger"><?php if (isset($errors['model'])) {
-                                                                        foreach ($errors['model'] as $error) {
-                                                                            echo $error;
-                                                                        }
-                                                                    } ?></div>
+                            <input class="form-control" type="text" id="model" name="model" maxlength="50" placeholder="ex. Twingo" value="<?= $data['model'] ?? '' ?>" required>
+                            <span class="small text-danger"><?= $errors['model'][0] ?? '' ?></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="registration" class="form-label fw-bold">Numéro d'immatriculation <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="registration" name="registration" maxlength="10" pattern="<?= REGEX_REGISTRATION ?>" placeholder="ex. AA-000-AA" value="<?= $registration ?? '' ?>" required>
-                            <div class="error small text-danger"><?php if (isset($errors['registration'])) {
-                                                                        foreach ($errors['registration'] as $error) {
-                                                                            echo $error;
-                                                                        }
-                                                                    } ?></div>
+                            <input class="form-control" type="text" id="registration" name="registration" maxlength="10" pattern="<?= REGEX_REGISTRATION ?>" placeholder="ex. AA-000-AA" value="<?= $data['registration'] ?? '' ?>" required>
+                            <span class="small text-danger"><?= $errors['registration'][0] ?? '' ?></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="mileage" class="form-label fw-bold">Kilométrage <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="mileage" name="mileage" pattern="<?= REGEX_MILEAGE ?>" placeholder="ex. 10000" value="<?= $mileage ?? '' ?>" required>
-                            <div class="error small text-danger"><?php if (isset($errors['mileage'])) {
-                                                                        foreach ($errors['mileage'] as $error) {
-                                                                            echo $error;
-                                                                        }
-                                                                    } ?></div>
+                            <input class="form-control" type="text" id="mileage" name="mileage" pattern="<?= REGEX_MILEAGE ?>" placeholder="ex. 10000" value="<?= $data['mileage'] ?? '' ?>" required>
+                            <span class="small text-danger"><?= $errors['mileage'][0] ?? '' ?></span>
                         </div>
 
                         <div class="mb-3">
@@ -54,15 +38,11 @@
                             <select class="form-select" name="category" id="category" required>
                                 <option disabled>---Sélectionnez la catégorie---</option>
                                 <?php foreach ($categoryList as $category) {
-                                    $isSelected = ($categoryId == $category['id_category']) ? 'selected' : ''; ?>
+                                    $isSelected = ($data['categoryId'] == $category['id_category']) ? 'selected' : ''; ?>
                                     <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>
                                 <?php } ?>
                             </select>
-                            <div class="error small text-danger"><?php if (isset($errors['categoryId'])) {
-                                                                        foreach ($errors['categoryId'] as $error) {
-                                                                            echo $error;
-                                                                        }
-                                                                    } ?></div>
+                            <span class="small text-danger"><?= $errors['categoryId'] ?? '' ?></span>
                         </div>
 
                         <div class="mb-3">

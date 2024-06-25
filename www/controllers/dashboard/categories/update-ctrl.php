@@ -2,16 +2,23 @@
 
 $sectionName = 'Catégorie';
 $title = 'Modification d\'une catégories';
+$errors = null;
 
-$id = $_GET['id'] ?? null;
-if (is_null($id)) {
-    redirectToRoute('/controllers/dashboard/categories/list-ctrl.php');
-};
+try {
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if (!$id) {
+        throw new Exception('Une erreur est survenue');
+    };
 
+    $categoryModel = new Category();
+    if (!$categoryModel->getOne($id)) {
+        throw new Exception('Cette catégorie n\'existe pas');
+    };
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    try {
-        $categoryName = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $category = $categoryModel->getOne($id);
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $categoryName = filter_input(INPUT_POST, 'categoryName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $rules = [
             'categoryName' => 'required|max:50',
@@ -33,17 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 redirectToRoute('?page=categories/list');
             }
         }
-    } catch (\PDOException $e) {
-        $errors = $e->getMessage();
-        // include __DIR__ . '/../../../views/error.php';
     }
+} catch (\PDOException $e) {
+    $error = $e->getMessage();
+    renderView('404');
+} catch (Exception $e) {
+    $error = $e->getMessage();
+    renderView('404');
 }
 
-try {
-    $categoryModel = new Category();
-    $category = $categoryModel->getOne($id);
-} catch (\PDOException $th) {
-    //throw $th;
-}
-
-renderView('dashboard/categories/update', compact('title', 'category', 'sectionName'));
+renderView('dashboard/categories/update', compact('title', 'category', 'sectionName', 'errors'));

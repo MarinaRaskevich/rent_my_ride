@@ -8,8 +8,11 @@
             <div class="row h-100 d-flex justify-content-center align-items-center">
                 <div class="col-8">
                     <form method="post">
-                        <label for="name" class="form-label fw-bold mb-2">Entrez un nouveau nom de catégorie</label>
-                        <input class="form-control" type="text" name="name" id="name" maxlength="50" value="<?= $category->name ?>">
+                        <div>
+                            <label for="categoryName" class="form-label fw-bold mb-2">Entrez un nouveau nom de catégorie</label>
+                            <input class="form-control" type="text" name="categoryName" id="categoryName" maxlength="50" value="<?= $category->name ?>" required>
+                            <span class="text-danger small"><?= $errors['categoryName'][0] ?? '' ?></span>
+                        </div>
                         <button type="submit" class="btn btn-primary mt-2">Modifier</button>
                     </form>
                 </div>

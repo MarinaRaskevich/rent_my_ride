@@ -75,11 +75,18 @@ class Category extends BaseModel
     }
 
     // Vérifiсation si le nom de catégorie saisi existe déjà dans la base de données
-    public function isExiste($name): bool
+    public function isExist($column, $property): bool
     {
-        $sql = 'SELECT count(*) FROM `categories` WHERE `name` = :name;';
+        if ($column === 'name') {
+            $sql = 'SELECT count(*) FROM `categories` WHERE `name` = :property;';
+        }
+
+        if ($column === 'id') {
+            $sql = 'SELECT count(*) FROM `categories` WHERE `id_category` = :property;';
+        }
+
         $sth = $this->db->prepare($sql);
-        $sth->bindValue(':name', $name, PDO::PARAM_STR);
+        $sth->bindValue(':property', $property, PDO::PARAM_STR);
         $sth->execute();
         if ($sth->fetchColumn() > 0) {
             return true;

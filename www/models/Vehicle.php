@@ -247,6 +247,60 @@ class Vehicle extends BaseModel
         }
     }
 
+    ///Pagination
+    public function getTotalNumber()
+    {
+        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles`;';
+        $sth = $this->db->query($sql);
+        $result = $sth->fetch(PDO::FETCH_ASSOC);
+        $nbItems = (int) $result['totalNumber'];
+        return $nbItems;
+    }
+
+    public function getMatchForSearch($query)
+    {
+        $sql = "SELECT `id_vehicle`, `brand`, `model`
+            FROM `vehicles` 
+            WHERE `brand` LIKE :query
+            OR `model` LIKE :query;";
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':query', '%' . $query . '%');
+        $sth->execute();
+        $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $vehiclesList;
+    }
+
+    public function getAll($id_category)
+    {
+        $sql = "SELECT `brand`, `model` FROM `vehicles` WHERE `id_category` = :id_category;";
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':id_category', $id_category);
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    //Retourner toutes les données de la base
+    // public function getAll($column, $order, $first, $last)
+    // {
+    //     if ($column == 'name') {
+    //         $table = 'categories';
+    //     } else {
+    //         $table = 'vehicles';
+    //     }
+    //     $sql = "SELECT * 
+    //                 FROM `vehicles` 
+    //                 INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
+    //                 ORDER BY `$table`.`$column` $order
+    //                 LIMIT :first, :last;";
+
+    //     $sth = $this->db->prepare($sql);
+    //     $sth->bindValue(':first', $first, PDO::PARAM_INT);
+    //     $sth->bindValue(':last', $last, PDO::PARAM_INT);
+    //     $sth->execute();
+    //     $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
+    //     return $vehiclesList;
+    // }
+
     // public static function getPictureName($id)
     // {
     //     $pdo = dbConnect();
@@ -267,49 +321,4 @@ class Vehicle extends BaseModel
     //     $totalNumber = $sth->fetch();
     //     return $totalNumber;
     // }
-
-    ///Pagination
-    public function getTotalNumber()
-    {
-        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles`;';
-        $sth = $this->db->query($sql);
-        $result = $sth->fetch(PDO::FETCH_ASSOC);
-        $nbItems = (int) $result['totalNumber'];
-        return $nbItems;
-    }
-
-    //Retourner toutes les données de la base
-    public function getAll($column, $order, $first, $last)
-    {
-        if ($column == 'name') {
-            $table = 'categories';
-        } else {
-            $table = 'vehicles';
-        }
-        $sql = "SELECT * 
-            FROM `vehicles` 
-            INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-            ORDER BY `$table`.`$column` $order
-            LIMIT :first, :last;";
-
-        $sth = $this->db->prepare($sql);
-        $sth->bindValue(':first', $first, PDO::PARAM_INT);
-        $sth->bindValue(':last', $last, PDO::PARAM_INT);
-        $sth->execute();
-        $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
-        return $vehiclesList;
-    }
-
-    public function getMatchForSearch($query)
-    {
-        $sql = "SELECT `id_vehicle`, `brand`, `model`
-            FROM `vehicles` 
-            WHERE `brand` LIKE :query
-            OR `model` LIKE :query;";
-        $sth = $this->db->prepare($sql);
-        $sth->bindValue(':query', '%' . $query . '%');
-        $sth->execute();
-        $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
-        return $vehiclesList;
-    }
 }

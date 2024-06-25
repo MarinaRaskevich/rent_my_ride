@@ -6,7 +6,8 @@ try {
     $category = new Category();
     $categoryList = $category->getAll();
 } catch (\PDOException $e) {
-    // include __DIR__ . '/../../../views/error.php';
+    $error = $e->getMessage();
+    renderView('404');
 }
 
 
