@@ -25,6 +25,8 @@ try {
         $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_NUMBER_INT);
         $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_SPECIAL_CHARS);
         $zipcode = filter_input(INPUT_POST, 'zipcode', FILTER_SANITIZE_NUMBER_INT);
+        $startdate = filter_input(INPUT_POST, 'startdate', FILTER_SANITIZE_NUMBER_INT);
+        $enddate = filter_input(INPUT_POST, 'enddate', FILTER_SANITIZE_NUMBER_INT);
 
         ///////////// created_at ///////////
         $local_timezone = new DateTimeZone("Europe/Paris");
@@ -35,11 +37,13 @@ try {
         $rules = [
             'lastname' => 'required|max:50|regex:REGEX_NAME',
             'firstname' => 'required|max:50|regex:REGEX_NAME',
-            'birthdate' => 'required|regex:REGEX_BIRTHDATE',
+            'birthdate' => 'required|regex:REGEX_DATE',
             'email' => 'required|max:255|email',
             'phone' => 'required|regex:REGEX_PHONE',
             'city' => 'required|max:100',
-            'zipcode' => 'required|regex:REGEX_ZIPCODE'
+            'zipcode' => 'required|regex:REGEX_ZIPCODE',
+            'startdate' => 'required|regex:REGEX_DATE',
+            'enddate' => 'required|regex:REGEX_DATE'
         ];
 
         $data = [
@@ -49,7 +53,9 @@ try {
             'email' => $email,
             'phone' => $phone,
             'city' => $city,
-            'zipcode' => $zipcode
+            'zipcode' => $zipcode,
+            'startdate' => $startdate,
+            'enddate' => $enddate
         ];
 
 

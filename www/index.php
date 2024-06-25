@@ -2,22 +2,34 @@
 // // helpers
 // require_once './helpers/http_helper.php';
 
-// $page = $_GET['page'] ?? '';
+// démarrage session
+session_start();
 
-// $page = filter_var($page, FILTER_SANITIZE_SPECIAL_CHARS);
+// Import des contrôleurs
 
-// $path = match ($page) {
-//     '' => 'dashboard/categories/list',
-//     'categories/add' => 'dashboard/categories/add',
-//     'categories/update' => 'dashboard/categories/update',
-//     'categories/delete' => 'dashboard/categories/delete',
-//     default => '404'
-// };
+$page = $_GET['page'] ?? '';
+
+$page = filter_var($page, FILTER_SANITIZE_SPECIAL_CHARS);
+
+$path = match ($page) {
+    'categories/list' => 'dashboard/categories/list',
+    'categories/add' => 'dashboard/categories/add',
+    'categories/update' => 'dashboard/categories/update',
+    'categories/delete' => 'dashboard/categories/delete',
+    'vehicles/list' => 'dashboard/vehicles/list',
+    'vehicles/add' => 'dashboard/vehicles/add',
+    'vehicles/update' => 'dashboard/vehicles/update',
+    'vehicles/delete' => 'dashboard/vehicles/delete',
+    'rents/list' => 'dashboard/rents/list',
+    'clients/list' => 'dashboard/clients/list',
+    'dashboard/home' => 'dashboard/home',
+    '', 'home' => 'home',
+    'vehicle/detail' => 'vehicle-detail',
+    'booking' => 'booking',
+    default => '404'
+};
 
 
 // Router
 
-// dashboard/categories/add
-
-// require_once './controllers/' . $path . '-ctrl.php';
-require_once './controllers/home-ctrl.php';
+require_once './controllers/' . $path . '-ctrl.php';

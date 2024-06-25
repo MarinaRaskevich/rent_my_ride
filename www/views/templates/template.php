@@ -13,7 +13,7 @@
 <body>
     <header>
         <div class="container top d-flex justify-content-between align-items-center px-3">
-            <a class="brand d-flex align-items-center" href="/controllers/home-ctrl.php">
+            <a class="brand d-flex align-items-center" href="?page=home">
                 <img class="logo" src="/public/assets/img/car.png" alt="logo">
                 <p class="brandName ms-2 mb-0">Rent My Ride</p>
             </a>
@@ -24,7 +24,7 @@
             <div class="access d-flex align-items-center justify-content-end">
                 <img class="access_avatar" src="/public/assets/img/default-avatar.png" alt="">
                 <div class="access_data ms-2">
-                    <a href="/controllers/dashboard/home-ctrl.php">
+                    <a href="?page=dashboard/home">
                         <p class="mb-0"><span>Se connecter</span></p>
                     </a>
                     <!-- <p class="mb-0">Admin</p> -->

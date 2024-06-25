@@ -9,7 +9,7 @@
             <p>Catégorie: <?= $vehicle->name ?></p>
             <p>Numéro d'immatriculation: <?= $vehicle->registration ?></p>
             <p>Kilométrage: <?= $vehicle->mileage ?></p>
-            <a href="/controllers/booking-ctrl.php?id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary">Réserver</a>
+            <a href="?page=booking&id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary">Réserver</a>
         </div>
     </div>
 </div>

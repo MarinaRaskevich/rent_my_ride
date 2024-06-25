@@ -23,3 +23,20 @@ function redirectToRoute($path)
     header('Location: ' . $path);
     exit();
 }
+
+function addFlash(string $type, string $message)
+{
+    $_SESSION['flashes']['type'] = $type;
+    $_SESSION['flashes']['message'] = $message;
+}
+
+function getFlash()
+{
+    $flash = [];
+    if (isset($_SESSION['flashes'])) {
+        $flash['type'] =  $_SESSION['flashes']['type'];
+        $flash['message'] =  $_SESSION['flashes']['message'];
+    }
+    unset($_SESSION['flashes']);
+    return $flash;
+}

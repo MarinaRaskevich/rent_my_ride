@@ -33,7 +33,7 @@
                                 <img src="/public/uploads/<?= $vehicle['picture'] ?>" alt="" class="w-100">
                                 <div class="mt-4 d-flex justify-content-between align-items-center">
                                     <p class="mb-0 fw-bold">80€ / par jour</p>
-                                    <a class="btn btn-primary" href="/controllers/vehicle-detail-ctrl.php?id=<?= $vehicle['id_vehicle'] ?>">Réserver</a>
+                                    <a class="btn btn-primary" href="?page=vehicle/detail&id=<?= $vehicle['id_vehicle'] ?>">Réserver</a>
                                 </div>
                             </div>
                         </div>
