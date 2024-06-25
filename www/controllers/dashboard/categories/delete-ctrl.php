@@ -7,18 +7,14 @@ try {
     if ($isOk != false) {
         redirectToRoute('?page=categories/list');
     } else {
-        $vehicleModel = new Vehicle();
-        $vehicles = $vehicleModel->getAll($id);
-        var_dump($vehicles);
-        if ($vehicles) {
-            addFlash('danger', "Vous ne pouvez pas supprimer cette catégorie car trois voitures y appartiennent");
-            // redirectToRoute('?page=categories/list');
-        }
+        renderView('404');
     }
 } catch (Exception $e) {
     $error = $e->getMessage();
-    // renderView('404');
-} catch (\PDOException $e) {
-    $error = $e->getMessage();
-    // renderView('404');
+    $vehicleModel = new Vehicle();
+    $vehicles = $vehicleModel->getAll($id);
+    if ($vehicles) {
+        addFlash('danger', 'Erreur: vous ne pouvez pas supprimer la catégorie \'' . $categoryModel->getOne($id)->name . '\' (il y a ' . count($vehicles) . ' voiture(s) dans cette catégorie)');
+        redirectToRoute('?page=categories/list');
+    }
 }

@@ -272,7 +272,7 @@ class Vehicle extends BaseModel
 
     public function getAll($id_category)
     {
-        $sql = "SELECT `brand`, `model` FROM `vehicles` WHERE `id_category` = :id_category;";
+        $sql = "SELECT `brand`, `model` AS `vehicleName` FROM `vehicles` WHERE `id_category` = :id_category;";
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':id_category', $id_category);
         $sth->execute();

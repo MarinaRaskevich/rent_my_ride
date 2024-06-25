@@ -2,31 +2,28 @@
 
 $title = 'Modification d\'un véhicule';
 $sectionName = 'Véhicules';
+$errors = [];
+$data = [];
 
-$id = $_GET['id'] ?? null;
-if (is_null($id)) {
-    redirectToRoute('/controllers/dashboard/vehicles/list-ctrl.php');
-};
+try {
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if (!$id) {
+        throw new Exception('Une erreur est survenue');
+    };
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    try {
+    $category = new Category();
+    $categoryList = $category->getAll();
+
+    $vehicle = new Vehicle();
+    $oneVehicle = $vehicle->getOne($id);
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ////////// traitement du formulaire ///////////
-        ////////////// brand /////////////
         $brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ////////////// model /////////////
         $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ///////////// registration ///////////
         $registration = filter_input(INPUT_POST, 'registration', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ///////////// mileage ///////////
         $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
-
-        ///////////// category ///////////
         $categoryId = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        ///////////// picture ///////////
         $existingPicture = filter_input(INPUT_POST, 'existingPicture', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         if (!empty($_FILES['picture']['name'])) {
@@ -53,11 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             move_uploaded_file($file_tmp_name, $uploads_dir);
 
             if ($existingPicture != 'default.png') {
-                $filepath = __DIR__ . '/var/www/html/public/uploads/' . $existingPicture;
+                $filepath = __DIR__ . '/../../../public/uploads/' . $existingPicture;
                 unlink($filepath);
             }
         } else {
-            $filename = $existingPicture;
+            $fileName = $existingPicture;
         }
 
         /////////// updated_at ///////////
@@ -69,8 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $rules = [
             'brand' => 'required|max:50',
             'model' => 'required|max:50',
-            'registration' => 'required|regex:registration',
-            'mileage' => 'required|regex:mileage',
+            'registration' => 'required|regex:REGEX_REGISTRATION',
+            'mileage' => 'required|regex:REGEX_MILEAGE',
             'categoryId' => 'required'
         ];
 
@@ -97,21 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 redirectToRoute('?page=vahicles/list');
             }
         }
-    } catch (Exception $e) {
-        $errors = $e->getMessage();
-        // include __DIR__ . '/../../../views/error.php';
     }
-}
-
-try {
-    $category = new Category();
-    $categoryList = $category->getAll();
-
-    $vehicle = new Vehicle();
-    $oneVehicle = $vehicle->getOne($id);
-} catch (\Throwable $th) {
-    //throw $th;
+} catch (Exception $e) {
+    $error = $e->getMessage();
+    renderView('404');
 }
 
 
-renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList', 'sectionName'));
+renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList', 'sectionName', 'errors', 'data'));

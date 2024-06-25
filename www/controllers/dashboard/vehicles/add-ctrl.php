@@ -86,14 +86,9 @@ try {
             }
         }
     }
-} catch (\PDOException $e) {
-    $error = $e->getMessage();
-    var_dump($error);
-    // renderView('404');
 } catch (Exception $e) {
     $error = $e->getMessage();
-    var_dump($error);
-    // renderView('404');
+    renderView('404');
 }
 
 renderView('dashboard/vehicles/add', compact('title', 'categoryList', 'sectionName', 'errors', 'data'));

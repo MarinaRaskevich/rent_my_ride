@@ -5,6 +5,7 @@
             <?php include __DIR__ . '/../templates/navbar.php'; ?>
         </div>
         <div class="col-10" id="content">
+            <?php include __DIR__ . '/../../partials/message.php'; ?>
             <div class="vehiclesList">
                 <table>
                     <thead>

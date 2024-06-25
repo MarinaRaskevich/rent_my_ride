@@ -15,8 +15,8 @@ try {
     $vehicle = new Vehicle();
     $vehiclesList = $vehicle->getAllForDashboard($column, $order);
 } catch (\PDOException $e) {
-    $errors = $e->getMessage();
-    // include __DIR__ . '/../../../views/error.php';
+    $error = $e->getMessage();
+    renderView('404');
 }
 
 renderView('dashboard/vehicles/list', compact('title', 'vehiclesList', 'order', 'sectionName'));

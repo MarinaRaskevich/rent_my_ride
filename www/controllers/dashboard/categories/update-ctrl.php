@@ -41,9 +41,6 @@ try {
             }
         }
     }
-} catch (\PDOException $e) {
-    $error = $e->getMessage();
-    renderView('404');
 } catch (Exception $e) {
     $error = $e->getMessage();
     renderView('404');

@@ -18,6 +18,6 @@ try {
         redirectToRoute('?page=vehicles/list');
     }
 } catch (\PDOException $e) {
-    $errors = $e->getMessage();
-    include __DIR__ . '/../../../views/error.php';
+    $error = $e->getMessage();
+    renderView('404');
 }
