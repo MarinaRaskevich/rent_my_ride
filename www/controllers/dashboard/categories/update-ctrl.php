@@ -1,8 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../models/Category.php';
-require __DIR__ . '/../../../helpers/Validator.php';
-require __DIR__ . '/../../../helpers/http_helper.php';
 
+$sectionName = 'Catégorie';
 $title = 'Modification d\'une catégories';
 
 $id = $_GET['id'] ?? null;
@@ -31,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $category->setId_category($id);
             $isOk = $category->update();
             if ($isOk != false) {
-                redirectToRoute('/controllers/dashboard/categories/list-ctrl.php');
+                addFlash('success', 'Modification effectué avec succès !');
+                redirectToRoute('?page=categories/list');
             }
         }
     } catch (\PDOException $e) {
@@ -47,4 +46,4 @@ try {
     //throw $th;
 }
 
-renderView('dashboard/categories/update', compact('title', 'category'));
+renderView('dashboard/categories/update', compact('title', 'category', 'sectionName'));

@@ -1,7 +1,4 @@
 <?php
-require_once __DIR__ . '/../models/Category.php';
-require_once __DIR__ . '/../models/Vehicle.php';
-
 $title = 'Rent My Ride';
 $script = 'script';
 
@@ -44,5 +41,6 @@ try {
     //throw $th;
 }
 
+renderView('home', compact('title', 'categoryList', 'categoryId', 'vehiclesList', 'currentPage', 'pages', 'script'));
 require_once __DIR__ . '/../views/home.php';
 require_once __DIR__ . '/../views/templates/template.php';

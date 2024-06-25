@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../models/Vehicle.php';
 
 try {
     $query = isset($_POST['query']) ? $_POST['query'] : '';

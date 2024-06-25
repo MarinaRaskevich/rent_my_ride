@@ -1,8 +1,7 @@
 <?php
-require_once __DIR__ . '/../../../models/Vehicle.php';
-require __DIR__ . '/../../../helpers/http_helper.php';
 
 $title = 'Véhicules';
+$sectionName = 'Véhicules';
 
 try {
     $column = filter_input(INPUT_GET, 'column', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -17,7 +16,7 @@ try {
     $vehiclesList = $vehicle->getAllForDashboard($column, $order);
 } catch (\PDOException $e) {
     $errors = $e->getMessage();
-    include __DIR__ . '/../../../views/error.php';
+    // include __DIR__ . '/../../../views/error.php';
 }
 
-renderView('dashboard/vehicles/list', compact('title', 'vehiclesList', 'order'));
+renderView('dashboard/vehicles/list', compact('title', 'vehiclesList', 'order', 'sectionName'));

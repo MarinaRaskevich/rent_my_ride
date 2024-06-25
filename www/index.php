@@ -1,6 +1,15 @@
 <?php
-// // helpers
-// require_once './helpers/http_helper.php';
+require_once './config/config.php';
+require_once './helpers/Database.php';
+require_once './helpers/BaseModel.php';
+require_once './helpers/validatorRules/RequiredRule.php';
+require_once './helpers/validatorRules/MaxRule.php';
+require_once './helpers/validatorRules/RegexRule.php';
+require_once './helpers/validatorRules/EmailRule.php';
+require_once './helpers/Validator.php';
+require_once './helpers/http_helper.php';
+require_once './models/Category.php';
+require_once './models/Vehicle.php';
 
 // démarrage session
 session_start();

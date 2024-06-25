@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . '/../../helpers/http_helper.php';
 
 $title = 'Accueil';
+$sectionName = 'Accueil';
 
 
-renderView('dashboard/home', compact('title'));
+renderView('dashboard/home', compact('title', 'sectionName'));

@@ -1,10 +1,7 @@
 <?php
-require_once __DIR__ . '/../../../models/Vehicle.php';
-require_once __DIR__ . '/../../../models/Category.php';
-require __DIR__ . '/../../../helpers/Validator.php';
-require __DIR__ . '/../../../helpers/http_helper.php';
 
 $title = 'Modification d\'un véhicule';
+$sectionName = 'Véhicules';
 
 $id = $_GET['id'] ?? null;
 if (is_null($id)) {
@@ -96,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $vehicle->setId_vehicle(intval($id));
             $isOk = $vehicle->update();
             if ($isOk) {
-                header('Location:/controllers/dashboard/vehicles/list-ctrl.php');
-                exit;
+                addFlash('success', 'Modification effectué avec succès !');
+                redirectToRoute('?page=vahicles/list');
             }
         }
     } catch (Exception $e) {
@@ -117,4 +114,4 @@ try {
 }
 
 
-renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList'));
+renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList', 'sectionName'));

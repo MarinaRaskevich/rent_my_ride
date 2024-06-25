@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../../../models/Vehicle.php';
+
+$sectionName = 'Véhicules';
 
 try {
     $id = $_GET['id'];
@@ -14,8 +15,7 @@ try {
     $isOk = $vehicle->delete($id, $deleted_at);
 
     if ($isOk != false) {
-        header('Location:/controllers/dashboard/vehicles/list-ctrl.php');
-        exit;
+        redirectToRoute('?page=vehicles/list');
     }
 } catch (\PDOException $e) {
     $errors = $e->getMessage();

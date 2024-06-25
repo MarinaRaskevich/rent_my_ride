@@ -1,8 +1,4 @@
 <?php
-require 'validatorRules/RequiredRule.php';
-require 'validatorRules/MaxRule.php';
-require 'validatorRules/RegexRule.php';
-require 'validatorRules/EmailRule.php';
 
 class Validator
 {

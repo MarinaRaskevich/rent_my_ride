@@ -23,7 +23,7 @@ const getCity = () => {
           city.value = "";
           city.value = result[0].nomCommune;
         });
-    }, 300);
+    }, 200);
   }
 };
 

@@ -1,8 +1,4 @@
 <?php
-require __DIR__ . '/../helpers/http_helper.php';
-require_once __DIR__ . '/../models/Vehicle.php';
-require_once __DIR__ . '/../models/Client.php';
-require __DIR__ . '/../helpers/Validator.php';
 $title = "Réservation";
 $script = 'citiesApi';
 
@@ -69,13 +65,11 @@ try {
             $client->setCreated_at($created_at);
             $isOk = $client->insert();
             // if ($isOk != false) {
-            //     header('Location:/controllers/dashboard/vehicles/list-ctrl.php');
-            //     exit;
+            //     redirectToRoute('?page=vahicles/list');
             // }
         }
     }
 } catch (\Throwable $th) {
-    var_dump($th->getMessage());
 }
 
 renderView('booking', compact('title', 'vehicle', 'script'));

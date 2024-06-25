@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../models/Vehicle.php';
 
 try {
     if (!isset($_GET['id'])) {

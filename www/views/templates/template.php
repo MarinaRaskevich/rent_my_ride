@@ -41,7 +41,9 @@
             <span>&copy; <?= date('Y') ?> AC</span>
         </div>
     </footer>
-    <script src="/public/assets/js/<?= $script ?>.js"></script>
+    <?php if (!empty($script)) : ?>
+        <script src="/public/assets/js/<?= $script ?>.js"></script>
+    <?php endif; ?>
     <script src="/public/assets/js/search.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

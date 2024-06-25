@@ -12,10 +12,9 @@
                 <p class="mb-0 text-secondary">Trier par:</p>
                 <form method="post" class="d-flex w-25">
                     <select name="category" id="category" class="form-select me-2">
-                        <option>---Catégorie---</option>
-                        <option value="">Toutes catégories</option>
+                        <option value="all">Toutes catégories</option>
                         <?php foreach ($categoryList as $category) {
-                            $isSelected = ($oneVehicle->id_category == $category['id_category']) ? 'selected' : ''; ?>
+                            $isSelected = ($category['id_category'] == $categoryId) ? 'selected' : ''; ?>
                             <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>
                         <?php } ?>
                     </select>

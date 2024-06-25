@@ -1,9 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../models/Category.php';
-require __DIR__ . '/../../../helpers/Validator.php';
-require __DIR__ . '/../../../helpers/http_helper.php';
-
-$title = 'Création de catégorie';
+$sectionName = 'Catégorie';
 
 try {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -28,11 +24,11 @@ try {
                 $category = new Category($newCategoryName);
                 $isOk = $category->insert();
                 if ($isOk) {
-                    header('Location:/controllers/dashboard/categories/list-ctrl.php');
-                    exit;
+                    addFlash('success', "La catégorie $newCategoryName a été ajoutée avec succès!");
+                    redirectToRoute('?page=categories/list');
                 }
             } else {
-                $errors['newCategoryName'][] =  'Сette catégorie existe déjà dans votre base de données';
+                addFlash('danger', "Cette catégorie existe déjà dans votre base de données");
             }
         }
     }
@@ -43,4 +39,4 @@ try {
 
 $title = "Création de catégorie";
 
-renderView('dashboard/categories/add', compact('title'));
+renderView('dashboard/categories/add', compact('title', 'sectionName'));

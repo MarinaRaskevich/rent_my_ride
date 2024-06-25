@@ -1,7 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../models/Category.php';
-require __DIR__ . '/../../../helpers/http_helper.php';
-
+$sectionName = 'Catégorie';
 $title = 'Catégories';
 
 try {
@@ -12,4 +10,4 @@ try {
 }
 
 
-renderView('dashboard/categories/list', compact('title', 'categoryList'));
+renderView('dashboard/categories/list', compact('title', 'categoryList', 'sectionName'));
