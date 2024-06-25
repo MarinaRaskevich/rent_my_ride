@@ -95,11 +95,11 @@ class Category extends BaseModel
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
         $sthExecute = $sth->execute();
-        // if ($sth->rowCount() > 0) {
-        // return true;
-        // } else {
-        // return false;
-        // }
+        if ($sth->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
         return $sthExecute;
     }
 }

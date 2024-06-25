@@ -42,5 +42,3 @@ try {
 }
 
 renderView('home', compact('title', 'categoryList', 'categoryId', 'vehiclesList', 'currentPage', 'pages', 'script'));
-require_once __DIR__ . '/../views/home.php';
-require_once __DIR__ . '/../views/templates/template.php';

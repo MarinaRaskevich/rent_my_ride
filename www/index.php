@@ -35,6 +35,7 @@ $path = match ($page) {
     '', 'home' => 'home',
     'vehicle/detail' => 'vehicle-detail',
     'booking' => 'booking',
+    '404' => '404',
     default => '404'
 };
 

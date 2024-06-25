@@ -1,4 +1,5 @@
 <?php
+$title = "Rent My Ride";
 
 try {
     if (!isset($_GET['id'])) {
@@ -12,5 +13,4 @@ try {
     //throw $th;
 }
 
-require_once __DIR__ . '/../views/vehicle-detail.php';
-require_once __DIR__ . '/../views/templates/template.php';
+renderView('vehicle-detail', compact('title', 'vehicle'));

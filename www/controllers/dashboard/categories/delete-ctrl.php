@@ -6,8 +6,10 @@ try {
     $isOk = $category->delete($id);
     if ($isOk != false) {
         redirectToRoute('?page=categories/list');
+    } else {
+        throw new Exception('Une erreur est survenue');
     }
 } catch (Exception $e) {
     $errors = $e->getMessage();
-    // include __DIR__ . '/../../../views/error.php';
+    renderView('404');
 }
