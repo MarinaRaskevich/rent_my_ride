@@ -2,6 +2,7 @@
 
 $title = 'Modification d\'un véhicule';
 $sectionName = 'Véhicules';
+$script = 'deleteElement';
 $errors = [];
 $data = [];
 
@@ -26,6 +27,17 @@ try {
         $categoryId = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $existingPicture = filter_input(INPUT_POST, 'existingPicture', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        //L'utilisateur a supprimé l'image et n'a pas téléchargé de nouvelle image
+        if (empty($_FILES['picture']['name']) && $existingPicture === 'deleted') {
+            $fileName = 'default.png';
+        }
+
+        //L'utilisateur n'a pas téléchargé d'image et a laissé l'image par défaut
+        if (empty($_FILES['picture']['name']) && $existingPicture === 'default.png') {
+            $fileName = 'default.png';
+        }
+
+        //L'utilisateur a téléchargé une nouvelle image ou en a laissé une ancienne
         if (!empty($_FILES['picture']['name'])) {
             if ($_FILES['picture']['type'] != 'image/png') {
                 if ($_FILES['picture']['type'] != 'image/jpg') {
@@ -49,7 +61,7 @@ try {
             $uploads_dir = '/var/www/html/public/uploads/' . $fileName;
             move_uploaded_file($file_tmp_name, $uploads_dir);
 
-            if ($existingPicture != 'default.png') {
+            if ($existingPicture != 'default.png' && $existingPicture != 'deleted') {
                 $filepath = __DIR__ . '/../../../public/uploads/' . $existingPicture;
                 unlink($filepath);
             }
@@ -91,7 +103,7 @@ try {
             $isOk = $vehicle->update();
             if ($isOk) {
                 addFlash('success', 'Modification effectué avec succès !');
-                redirectToRoute('?page=vahicles/list');
+                redirectToRoute('?page=vehicles/list');
             }
         }
     }
@@ -101,4 +113,4 @@ try {
 }
 
 
-renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList', 'sectionName', 'errors', 'data'));
+renderView('dashboard/vehicles/update', compact('title', 'oneVehicle', 'categoryList', 'sectionName', 'errors', 'data', 'script'));

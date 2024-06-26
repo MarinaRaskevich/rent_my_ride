@@ -7,7 +7,7 @@
         <div class="col-10" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
             <div class="vehiclesList">
-                <table>
+                <table class="mt-3">
                     <thead>
                         <tr>
                             <th>Photo</th>

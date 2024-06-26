@@ -133,7 +133,6 @@ td {
 .vehiclesList table {
   width: 95%;
   border-collapse: collapse;
-  margin-top: 6%;
   margin-bottom: 3%;
 }
 
@@ -197,4 +196,9 @@ td {
 
 #searchResults a:hover {
   background-color: #f0f0f0;
+}
+
+.deleteImage {
+  margin-left: -6%;
+  cursor: pointer;
 }
