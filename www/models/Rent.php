@@ -114,4 +114,17 @@ class Rent extends BaseModel
             return false;
         }
     }
+
+    public function getAll(): array
+    {
+        $sql = "SELECT `rents`.*, CONCAT(`vehicles`.`brand`,' ', `vehicles`.`model`) AS 'vehicleName', CONCAT(`clients`.`lastname`,' ',`clients`.`firstname`) AS 'clientName'
+            FROM `rents` 
+            INNER JOIN `vehicles` 
+            ON `rents`.`id_vehicle` = `vehicles`.`id_vehicle`
+            INNER JOIN `clients` 
+            ON `rents`.`id_client` = `clients`.`id_client` ";
+        $sth = $this->db->query($sql);
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

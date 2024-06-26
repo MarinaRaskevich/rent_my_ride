@@ -123,31 +123,31 @@ td {
 }
 
 /************ LIST.PHP VEHICLES  ************/
-.vehiclesList {
+.tableDashboard {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.vehiclesList table {
-  width: 95%;
+.tableDashboard table {
+  width: 98%;
   border-collapse: collapse;
   margin-bottom: 3%;
 }
 
-.vehicleList table th,
+.tableDashboard table th,
 tr,
 td {
   padding: 10px;
 }
 
-.vehiclesList thead {
+.tableDashboard thead {
   border-bottom: 2px solid #0053af;
   font-size: 0.9em;
   text-align: center;
 }
 
-.vehiclesList tbody {
+.tableDashboard tbody {
   font-size: 0.9em;
   text-align: center;
 }

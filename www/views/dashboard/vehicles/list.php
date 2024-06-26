@@ -6,16 +6,16 @@
         </div>
         <div class="col-10 pt-3" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
-            <div class="vehiclesList">
+            <div class="tableDashboard">
                 <table>
                     <thead>
                         <tr>
                             <th>Photo</th>
-                            <th><a href="?column=brand&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Marque <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></i></a></th>
+                            <th><a href="?page=vehicles/list&column=brand&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Marque <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></i></a></th>
                             <th>Modèle</th>
                             <th>Numéro d'immat.</th>
                             <th>Kilométrage</th>
-                            <th><a href="?column=name&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Catégorie <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></a></th>
+                            <th><a href="?page=vehicles/list&column=name&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Catégorie <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></a></th>
                             <th>Date de création</th>
                             <!-- <th>Date de modification</th> -->
                             <th colspan="2"><a href="?page=vehicles/add"><i class="bi bi-plus-lg fs-4"></i></th>
