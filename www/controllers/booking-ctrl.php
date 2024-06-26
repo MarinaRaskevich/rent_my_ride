@@ -7,10 +7,10 @@ try {
         throw new Exception("Cette voiture n'existe pas");
     };
 
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    $id_vehicle = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
     $vehicleModel = new Vehicle();
-    $vehicle = $vehicleModel->getOne($id);
+    $vehicle = $vehicleModel->getOne($id_vehicle);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ////////// traitement du formulaire ///////////
@@ -58,18 +58,32 @@ try {
         Validator::validate($data, $rules);
         $errors = Validator::getErrors();
 
-        /////// création d'un nouveau objet depuis la classe Vehicle ///////
         if (empty($errors)) {
+            $pdo = Database::dbConnect();
+            $pdo->beginTransaction(); //désactive le mode autocommit. Lorsque l'autocommit est désactivé, les modifications faites sur la base de données via les instances des objets PDO ne sont pas appliquées tant que vous ne mettez pas fin à la transaction en appelant la fonction PDO::commit(). 
             $client = new Client($lastname, $firstname, $email, $phone, $city, $zipcode);
             $client->setBirthday($birthdate);
             $client->setCreated_at($created_at);
-            $isOk = $client->insert();
-            // if ($isOk != false) {
-            //     redirectToRoute('?page=vahicles/list');
-            // }
+            $isOkClient = $client->insert();
+            $id_client = $pdo->lastInsertId();
+
+            $rent = new Rent($startdate, $enddate, $id_vehicle, $id_client);
+            $rent->setCreated_at($created_at);
+            $isOkRent = $rent->insert();
+
+            if ($isOkRent && $isOkClient) {
+                $pdo->commit();
+                addFlash('success', 'Modification effectué avec succès !');
+                // redirectToRoute('?page=vahicles/list');
+            } else {
+                $pdo->rollback();
+                throw new Exception('Une erreur s\'est produite');
+            }
         }
     }
-} catch (\Throwable $th) {
+} catch (\Exception $e) {
+    $error = $e->getMessage();
+    renderView('404');
 }
 
 renderView('booking', compact('title', 'vehicle', 'script'));
