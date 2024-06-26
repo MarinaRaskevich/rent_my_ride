@@ -26,10 +26,18 @@ try {
         $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
         $categoryId = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $existingPicture = filter_input(INPUT_POST, 'existingPicture', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $isDeleted = filter_input(INPUT_POST, 'isDeleted', FILTER_SANITIZE_NUMBER_INT);
 
         //L'utilisateur a supprimé l'image et n'a pas téléchargé de nouvelle image
-        if (empty($_FILES['picture']['name']) && $existingPicture === 'deleted') {
+        if (empty($_FILES['picture']['name']) && $isDeleted === '1') {
             $fileName = 'default.png';
+            $filepath = '/var/www/html/public/uploads/' . $existingPicture;
+            unlink($filepath);
+        }
+
+        //L'utilisateur n'a pas téléchargé l'image et a laissé l'ancienne
+        if (empty($_FILES['picture']['name']) && $isDeleted === '0') {
+            $fileName = $existingPicture;
         }
 
         //L'utilisateur n'a pas téléchargé d'image et a laissé l'image par défaut
@@ -37,8 +45,8 @@ try {
             $fileName = 'default.png';
         }
 
-        //L'utilisateur a téléchargé une nouvelle image ou en a laissé une ancienne
-        if (!empty($_FILES['picture']['name'])) {
+        //L'utilisateur a téléchargé une nouvelle image
+        if ($_FILES['picture']['name'] !== '' && $isDeleted === '1') {
             if ($_FILES['picture']['type'] != 'image/png') {
                 if ($_FILES['picture']['type'] != 'image/jpg') {
                     if ($_FILES['picture']['type'] != 'image/jpeg') {
@@ -61,12 +69,10 @@ try {
             $uploads_dir = '/var/www/html/public/uploads/' . $fileName;
             move_uploaded_file($file_tmp_name, $uploads_dir);
 
-            if ($existingPicture != 'default.png' && $existingPicture != 'deleted') {
-                $filepath = __DIR__ . '/../../../public/uploads/' . $existingPicture;
+            if ($existingPicture != 'default.png') {
+                $filepath = '/var/www/html/public/uploads/' . $existingPicture;
                 unlink($filepath);
             }
-        } else {
-            $fileName = $existingPicture;
         }
 
         /////////// updated_at ///////////

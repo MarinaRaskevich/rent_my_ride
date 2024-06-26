@@ -63,6 +63,7 @@
                         </div>
                         <div>
                             <input type="hidden" id="existingPicture" name="existingPicture" value="<?= $oneVehicle->picture ?>">
+                            <input type="hidden" id="isDeleted" name="isDeleted" value="0">
                         </div>
                     </form>
                 </div>

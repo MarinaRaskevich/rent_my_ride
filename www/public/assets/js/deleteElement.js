@@ -1,11 +1,11 @@
 const deleteImage = document.querySelector(".deleteImage");
-const existingPicture = document.querySelector("#existingPicture");
+const isDeleted = document.querySelector("#isDeleted");
 const vehicleImage = document.querySelector("#vehicleImage");
 const picture = document.querySelector("#picture");
 
 const deleteElement = () => {
   vehicleImage.classList.add("d-none");
-  existingPicture.value = "deleted";
+  isDeleted.value = "1";
   picture.value = "";
 };
 
@@ -20,7 +20,7 @@ const getPicture = (event) => {
     reader.readAsDataURL(file);
   }
 
-  existingPicture.value = "deleted";
+  isDeleted.value = "1";
 };
 
 deleteImage.addEventListener("click", deleteElement);

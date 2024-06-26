@@ -40,18 +40,18 @@
                 <?php } ?>
                 <!-- Pagination -->
                 <ul class="d-flex justify-content-between list-unstyled pt-2">
-                    <li><a href="?page=<?= $currentPage - 1 ?>"><i class="bi bi-arrow-left fs-4 <?= ($currentPage == 1) ? "text-secondary" : "" ?>"></i></a></li>
+                    <li><a href="?page=home&part=<?= $currentPage - 1 ?>"><i class="bi bi-arrow-left fs-4 <?= ($currentPage == 1) ? "text-secondary" : "" ?>"></i></a></li>
                     <div class="d-flex justify-content-between align-items-center">
                         <?php for ($page = 1; $page <= $pages; $page++) { ?>
                             <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
                             <li class="<?= ($currentPage == $page) ? "fw-bold fs-4" : "" ?>">
-                                <a href="?page=<?= $page ?>" class="page-link"><?= $page ?></a>
+                                <a href="?page=home&part=<?= $page ?>" class="page-link"><?= $page ?></a>
                             </li>
                         <?php } ?>
                     </div>
                     <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
                     <li>
-                        <a href="?page=<?= $currentPage + 1 ?>" class="page-link"><i class="bi bi-arrow-right fs-4 <?= ($currentPage == $pages) ? "text-secondary" : "" ?>"></i></a>
+                        <a href="?page=home&part=<?= $currentPage + 1 ?>" class="page-link"><i class="bi bi-arrow-right fs-4 <?= ($currentPage == $pages) ? "text-secondary" : "" ?>"></i></a>
                     </li>
                 </ul>
             </div>

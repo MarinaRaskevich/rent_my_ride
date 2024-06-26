@@ -18,8 +18,8 @@ try {
     }
 
     //Pagination
-    if (isset($_GET['page'])) {
-        $currentPage = intval($_GET['page']);
+    if (isset($_GET['part'])) {
+        $currentPage = intval($_GET['part']);
     }
 
     if (empty($currentPage)) {

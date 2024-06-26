@@ -5,6 +5,10 @@ const debounceForCity = (func, delay) => {
 };
 
 const getCity = () => {
+  if (zipcode.value.length == 0) {
+    city.value = "";
+  }
+
   if (zipcode.value.length == 5) {
     let newForm = new FormData();
     newForm.append("zipcode", zipcode.value);
