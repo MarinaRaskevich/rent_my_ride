@@ -8,15 +8,15 @@ class Rent extends BaseModel
     private ?DateTime $enddate;
     private DateTime $created_at;
     private DateTime $confirmed_at;
-    private ?int $id_vehicles;
-    private ?int $id_clients;
+    private ?int $id_vehicle;
+    private ?int $id_client;
 
-    public function __construct(?DateTime $startdate = null, ?DateTime $enddate = null, ?int $id_vehicles = null, ?int $id_clients = null)
+    public function __construct(?DateTime $startdate = null, ?DateTime $enddate = null, ?int $id_vehicle = null, ?int $id_client = null)
     {
         $this->startdate = $startdate;
         $this->enddate = $enddate;
-        $this->id_vehicles = $id_vehicles;
-        $this->id_clients = $id_clients;
+        $this->id_vehicle = $id_vehicle;
+        $this->id_client = $id_client;
         parent::__construct();
     }
 
@@ -46,14 +46,14 @@ class Rent extends BaseModel
         $this->startdate = new DateTime($confirmed_at);
     }
 
-    public function setId_vehicles(?int $id_vehicles)
+    public function setId_vehicle(?int $id_vehicle)
     {
-        $this->id_vehicles = $id_vehicles;
+        $this->id_vehicle = $id_vehicle;
     }
 
-    public function setId_clients(?int $id_clients)
+    public function setId_client(?int $id_client)
     {
-        $this->id_clients = $id_clients;
+        $this->id_client = $id_client;
     }
 
     // Getters
@@ -82,29 +82,29 @@ class Rent extends BaseModel
         return $this->confirmed_at;
     }
 
-    public function getId_vehicles(): ?int
+    public function getId_vehicle(): ?int
     {
-        return $this->id_vehicles;
+        return $this->id_vehicle;
     }
 
-    public function getId_clients(): ?int
+    public function getId_client(): ?int
     {
-        return $this->id_clients;
+        return $this->id_client;
     }
 
     public function insert(): bool
     {
         $sql = 'INSERT INTO `rents` 
-                    (`startdate`, `enddate`, `id_vehicles`, `id_clients`) 
+                    (`startdate`, `enddate`, `id_vehicle`, `id_client`) 
                 VALUES
-                    (:startdate, :enddate, :id_vehicles, :id_clients);';
+                    (:startdate, :enddate, :id_vehicle, :id_client);';
 
         $sth = $this->db->prepare($sql);
 
         $sth->bindValue(':startdate', $this->getStartdate()->format('Y-m-d H:i:s'));
         $sth->bindValue(':enddate', $this->getEnddate()->format('Y-m-d H:i:s'));
-        $sth->bindValue(':id_vehicles', $this->getId_vehicles());
-        $sth->bindValue(':id_clients', $this->getId_clients());
+        $sth->bindValue(':id_vehicle', $this->getId_vehicle());
+        $sth->bindValue(':id_client', $this->getId_client());
 
         $sth->execute();
 

@@ -1,13 +1,13 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
-    <div class="row h-100">
+    <div class="row">
         <div class="col-2 bg-white">
             <?php include __DIR__ . '/../templates/navbar.php'; ?>
         </div>
-        <div class="col-10" id="content">
+        <div class="col-10 pt-3" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
             <div class="vehiclesList">
-                <table class="mt-3">
+                <table>
                     <thead>
                         <tr>
                             <th>Photo</th>

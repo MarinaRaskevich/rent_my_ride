@@ -25,10 +25,10 @@ try {
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_SANITIZE_NUMBER_INT);
 
         ///////////// created_at ///////////
-        $local_timezone = new DateTimeZone("Europe/Paris");
-        $creationTime = new DateTime();
-        $creationTime->setTimezone($local_timezone);
-        $created_at = $creationTime->format('Y-m-d H:i:s');
+        // $local_timezone = new DateTimeZone("Europe/Paris");
+        // $creationTime = new DateTime();
+        // $creationTime->setTimezone($local_timezone);
+        // $created_at = $creationTime->format('Y-m-d H:i:s');
 
         $rules = [
             'lastname' => 'required|max:50|regex:REGEX_NAME',
@@ -63,18 +63,15 @@ try {
             $pdo->beginTransaction(); //désactive le mode autocommit. Lorsque l'autocommit est désactivé, les modifications faites sur la base de données via les instances des objets PDO ne sont pas appliquées tant que vous ne mettez pas fin à la transaction en appelant la fonction PDO::commit(). 
             $client = new Client($lastname, $firstname, $email, $phone, $city, $zipcode);
             $client->setBirthday($birthdate);
-            $client->setCreated_at($created_at);
             $isOkClient = $client->insert();
-            $id_client = $pdo->lastInsertId();
+            $id_client = $client->getLastInsertId();
 
-            $rent = new Rent($startdate, $enddate, $id_vehicle, $id_client);
-            $rent->setCreated_at($created_at);
+            $rent = new Rent(new DateTime($startdate), new DateTime($enddate), $id_vehicle, $id_client);
             $isOkRent = $rent->insert();
 
             if ($isOkRent && $isOkClient) {
                 $pdo->commit();
-                addFlash('success', 'Modification effectué avec succès !');
-                // redirectToRoute('?page=vahicles/list');
+                renderView('booking-message', compact('title', 'vehicle'));
             } else {
                 $pdo->rollback();
                 throw new Exception('Une erreur s\'est produite');
@@ -83,7 +80,8 @@ try {
     }
 } catch (\Exception $e) {
     $error = $e->getMessage();
-    renderView('404');
+    var_dump($error);
+    // renderView('404');
 }
 
 renderView('booking', compact('title', 'vehicle', 'script'));

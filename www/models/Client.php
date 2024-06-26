@@ -143,7 +143,12 @@ class Client extends BaseModel
         $sth->bindValue(':phone', $this->getPhone());
         $sth->bindValue(':city', $this->getCity());
         $sth->bindValue(':zipcode', $this->getZipcode());
-
         return $sth->execute();
+        // return $this->db->lastInsertId();
+    }
+
+    public function getLastInsertId(): int
+    {
+        return $this->db->lastInsertId();
     }
 }

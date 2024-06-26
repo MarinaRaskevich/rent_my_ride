@@ -9,4 +9,9 @@ class BaseModel
     {
         $this->db = Database::dbConnect();
     }
+
+    public function getPDO()
+    {
+        return $this->db;
+    }
 }

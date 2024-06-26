@@ -18,7 +18,7 @@ const getResults = (e) => {
       searchResults.innerHTML = "";
     } else {
       // Utiliser fetch pour envoyer une requête au serveur
-      fetch("/controllers/search-ctrl.php", {
+      fetch("?page=search", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
