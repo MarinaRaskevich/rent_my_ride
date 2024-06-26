@@ -10,6 +10,8 @@ require_once './helpers/Validator.php';
 require_once './helpers/http_helper.php';
 require_once './models/Category.php';
 require_once './models/Vehicle.php';
+require_once './models/Client.php';
+require_once './models/Rent.php';
 
 // démarrage session
 session_start();
@@ -33,8 +35,10 @@ $path = match ($page) {
     'clients/list' => 'dashboard/clients/list',
     'dashboard/home' => 'dashboard/home',
     '', 'home' => 'home',
+    'search' => 'search',
     'vehicle/detail' => 'vehicle-detail',
     'booking' => 'booking',
+    'booking/message' => 'booking',
         // '404' => '404',
     default => '404'
 };
