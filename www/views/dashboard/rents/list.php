@@ -5,6 +5,9 @@
             <?php include __DIR__ . '/../templates/navbar.php'; ?>
         </div>
         <div class="col-10 pt-3" id="content">
+            <form method="post">
+                <select name="" id=""></select>
+            </form>
             <div class="tableDashboard">
                 <table>
                     <thead>
@@ -28,7 +31,7 @@
                                 <td><?= $rent['vehicleName'] ?></td>
                                 <td><?= $rent['registration'] ?></td>
                                 <td><?= $rent['clientName'] ?></td>
-                                <td><?php ?></td>
+                                <td><?= $rent['status'] ?></td>
                                 <th>
                                     <?php if (empty($rent['confirmed_at'])) { ?>
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $rent['id_rent'] ?>">
@@ -38,27 +41,6 @@
                                         <i class="bi bi-check-circle text-success"></i>
                                     <?php  } ?>
                                 </th>
-                                <!-- Button trigger modal -->
-
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="<?= $rent['id_rent'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </tr>
                         <?php } ?>
                     </tbody>

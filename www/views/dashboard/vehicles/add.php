@@ -11,13 +11,13 @@
                     <form method="POST" enctype="multipart/form-data" class="vehicle_form">
                         <div class="mb-3">
                             <label for="brand" class="form-label fw-bold">Marque <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="brand" name="brand" maxlength="50" placeholder="ex. Renault" value="<?= $data['brand'] ?? '' ?>" required>
+                            <input class="form-control" type="text" id="brand" name="brand" maxlength="50" placeholder="ex. Renault" value="<?= $data['brand'] ?? '' ?>" pattern="<?= REGEX_NAME ?>" required>
                             <span class="small text-danger"><?= $errors['brand'][0] ?? '' ?></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="model" class="form-label fw-bold">Modèle <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="model" name="model" maxlength="50" placeholder="ex. Twingo" value="<?= $data['model'] ?? '' ?>" required>
+                            <input class="form-control" type="text" id="model" name="model" maxlength="50" placeholder="ex. Twingo" value="<?= $data['model'] ?? '' ?>" pattern="<?= REGEX_NAME ?>" required>
                             <span class="small text-danger"><?= $errors['model'][0] ?? '' ?></span>
                         </div>
 

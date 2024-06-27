@@ -67,3 +67,19 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+DELIMITER //
+CREATE EVENT update_status
+ON SCHEDULE EVERY 1 DAY
+DO
+BEGIN
+  UPDATE `rents`
+  SET status = 'en cours'
+  WHERE (`startdate` < CURRENT_TIMESTAMP) AND (`enddate` > CURRENT_TIMESTAMP);
+
+  UPDATE `rents`
+  SET status = 'passée'
+  WHERE (`startdate` < CURRENT_TIMESTAMP) AND (`enddate` < CURRENT_TIMESTAMP);
+END//
+DELIMITER ;

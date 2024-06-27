@@ -55,8 +55,8 @@ try {
         $created_at = $creationTime->format('Y-m-d H:i:s');
 
         $rules = [
-            'brand' => 'required|max:50',
-            'model' => 'required|max:50',
+            'brand' => 'required|max:50|regex:REGEX_NAME',
+            'model' => 'required|max:50|regex:REGEX_NAME',
             'registration' => 'required|regex:REGEX_REGISTRATION',
             'mileage' => 'required|regex:REGEX_MILEAGE',
             'categoryId' => 'required'
