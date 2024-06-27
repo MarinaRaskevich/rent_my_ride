@@ -2,6 +2,7 @@
 
 $title = 'Véhicules';
 $sectionName = 'Véhicules';
+$script = 'deleteAction';
 
 try {
     $column = filter_input(INPUT_GET, 'column', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -19,4 +20,4 @@ try {
     renderView('404');
 }
 
-renderView('dashboard/vehicles/list', compact('title', 'vehiclesList', 'order', 'sectionName'));
+renderView('dashboard/vehicles/list', compact('title', 'vehiclesList', 'order', 'sectionName', 'script'));

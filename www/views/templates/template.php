@@ -17,18 +17,19 @@
                 <img class="logo" src="/public/assets/img/car.png" alt="logo">
                 <p class="brandName ms-2 mb-0">Rent My Ride</p>
             </a>
-            <div class="position-relative w-25">
+            <a class="btn d-lg-none"><i class="bi bi-search"></i></a>
+            <div class="position-relative d-none d-lg-block">
                 <input id="search" type="search" class="form-control rounded" placeholder="Rechercher" />
                 <div id="searchResults" class="text-decoration-none text-center"></div>
             </div>
-            <div class="access d-flex align-items-center justify-content-end">
-                <img class="access_avatar" src="/public/assets/img/default-avatar.png" alt="">
-                <div class="access_data ms-2">
-                    <a href="?page=dashboard/home">
+            <div class="access">
+                <a href="?page=dashboard/home" class="d-flex align-items-center justify-content-end">
+                    <img class="access_avatar" src="/public/assets/img/default-avatar.png" alt="">
+                    <div class="access_data ms-2 d-none d-lg-block">
                         <p class="mb-0"><span>Se connecter</span></p>
-                    </a>
-                    <!-- <p class="mb-0">Admin</p> -->
-                </div>
+                        <!-- <p class="mb-0">Admin</p> -->
+                    </div>
+                </a>
             </div>
         </div>
     </header>

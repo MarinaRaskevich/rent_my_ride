@@ -2,22 +2,25 @@
 
 $sectionName = 'Véhicules';
 
-try {
-    $id = $_GET['id'];
 
-    /////////// deleted_at ///////////
-    $local_timezone = new DateTimeZone("Europe/Paris");
-    $deleteTime = new DateTime();
-    $deleteTime->setTimezone($local_timezone);
-    $deleted_at = $deleteTime->format('Y-m-d H:i:s');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    try {
+        $id = filter_input(INPUT_POST, 'id_vehicle', FILTER_SANITIZE_NUMBER_INT);
 
-    $vehicle = new Vehicle();
-    $isOk = $vehicle->delete($id, $deleted_at);
+        /////////// deleted_at ///////////
+        $local_timezone = new DateTimeZone("Europe/Paris");
+        $deleteTime = new DateTime();
+        $deleteTime->setTimezone($local_timezone);
+        $deleted_at = $deleteTime->format('Y-m-d H:i:s');
 
-    if ($isOk != false) {
-        redirectToRoute('?page=vehicles/list');
+        $vehicle = new Vehicle();
+        $isOk = $vehicle->delete($id, $deleted_at);
+
+        if ($isOk != false) {
+            redirectToRoute('?page=vehicles/list');
+        }
+    } catch (\PDOException $e) {
+        $error = $e->getMessage();
+        renderView('404');
     }
-} catch (\PDOException $e) {
-    $error = $e->getMessage();
-    renderView('404');
 }

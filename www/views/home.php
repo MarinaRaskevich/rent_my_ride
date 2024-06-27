@@ -1,24 +1,26 @@
 <?php ob_start(); ?>
 <div class="hero">
     <div class="container d-flex flex-column justify-content-center align-items-end h-100">
-        <p class="fs-3 text-white fw-bold text-end mb-1">La meilleure plateforme de</p>
-        <p class="fs-3 text-white fw-bold text-end"> location de voitures</p>
+        <p class="fs-3 fw-bold text-end mb-1 hero-text">La meilleure plateforme de</p>
+        <p class="fs-3 fw-bold text-end hero-text"> location de voitures</p>
     </div>
 </div>
 <div class="container-fluid">
     <div class="container py-5">
         <h1 class="text-center fs-3 fw-bold">Nos voitures</h3>
-            <div class="sort mb-3">
-                <p class="mb-0 text-secondary">Trier par:</p>
-                <form method="post" class="d-flex">
-                    <select name="category" id="category" class="form-select me-2">
-                        <option value="all">Toutes catégories</option>
-                        <?php foreach ($categoryList as $category) {
-                            $isSelected = ($category['id_category'] == $categoryId) ? 'selected' : ''; ?>
-                            <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>
-                        <?php } ?>
-                    </select>
-                </form>
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-lg-3">
+                    <p class="mb-0 text-secondary">Trier par:</p>
+                    <form method="post">
+                        <select name="category" id="category" class="form-select me-2">
+                            <option value="all">Toutes catégories</option>
+                            <?php foreach ($categoryList as $category) {
+                                $isSelected = ($category['id_category'] == $categoryId) ? 'selected' : ''; ?>
+                                <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </form>
+                </div>
             </div>
             <div class="row g-3">
                 <?php foreach ($vehiclesList as $vehicle) { ?>

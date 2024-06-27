@@ -6,6 +6,7 @@
         </div>
         <div class="col-10 pt-3" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
+            <?php include __DIR__ . '/../../partials/dialog.php'; ?>
             <div class="categoryList w-100 d-flex justify-content-center">
                 <table>
                     <thead>
@@ -20,23 +21,10 @@
                             <td><a href="?page=categories/update&id=<?= $category['id_category'] ?>" class="text-black"><i class="bi bi-pencil"></i></a>
                             </td>
                             <td>
-                                <!-- Button trigger modal -->
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm<?= $category['id_category'] ?>">
-                                    <i class="bi bi-trash3"></i></a>
-                                <!-- Modal -->
-                                <div class="modal fade" id="deleteConfirm<?= $category['id_category'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-body mb-2">
-                                                Êtes-vous sûr de vouloir supprimer cette catégorie?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                <a type="button" class="btn btn-primary" href="?page=categories/delete&id=<?= $category['id_category'] ?>">Supprimer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <form class="delete-form" data-name="<?= $category['name'] ?>" action="?page=categories/delete" method="post">
+                                    <input type="hidden" name="id_category" value="<?= $category['id_category'] ?>">
+                                    <button type="submit" class="border-0 bg-secondary-subtle"><i class="bi bi-trash3"></i></button>
+                                </form>
                             </td>
                         </tr>
                     <?php } ?>

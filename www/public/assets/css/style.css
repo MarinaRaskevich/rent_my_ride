@@ -55,7 +55,6 @@ main > div > .row {
   height: 12vh;
 }
 
-.brand,
 .access {
   color: #0053af;
   width: 20%;
@@ -161,6 +160,18 @@ td {
   height: 65vh;
   background-image: url(/public/assets/img/hero.png);
   background-size: cover;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .hero {
+    height: 30vh;
+    color: white;
+  }
+
+  .hero-text {
+    text-shadow: 0.1em 0.1em 0 hsl(200, 55%, 18%);
+  }
 }
 
 .card {

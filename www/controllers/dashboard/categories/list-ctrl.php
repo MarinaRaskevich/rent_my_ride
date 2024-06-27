@@ -1,6 +1,7 @@
 <?php
 $sectionName = 'Catégorie';
 $title = 'Catégories';
+$script = 'deleteAction';
 
 try {
     $category = new Category();
@@ -11,4 +12,4 @@ try {
 }
 
 
-renderView('dashboard/categories/list', compact('title', 'categoryList', 'sectionName'));
+renderView('dashboard/categories/list', compact('title', 'categoryList', 'sectionName', 'script'));

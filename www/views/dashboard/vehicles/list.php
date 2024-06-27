@@ -6,6 +6,7 @@
         </div>
         <div class="col-10 pt-3" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
+            <?php include __DIR__ . '/../../partials/dialog.php'; ?>
             <div class="tableDashboard">
                 <table>
                     <thead>
@@ -38,23 +39,10 @@
                                     <!-- <td><?= $vehicle['updated_at'] ?></td> -->
                                     <td><a href="?page=vehicles/update&id=<?= $vehicle['id_vehicle'] ?>"><i class="bi bi-pencil text-black fs-6"></i></td>
                                     <td>
-                                        <!-- Button trigger modal -->
-                                        <a type="button" data-bs-toggle="modal" data-bs-target="#deleteConfirm<?= $vehicle['id_vehicle'] ?>">
-                                            <i class="bi bi-trash3 fs-6"></i></a>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="deleteConfirm<?= $vehicle['id_vehicle'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-body mb-2 fs-5">
-                                                        Êtes-vous sûr de vouloir supprimer <?= $vehicle['brand'] . ' ' . $vehicle['model'] ?>?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                        <a type="button" class="btn btn-primary" href="?page=vehicles/delete&id=<?= $vehicle['id_vehicle'] ?>">Supprimer</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <form class="delete-form" data-name="<?= $vehicle['brand'] . ' ' . $vehicle['model'] ?>" action="?page=vehicles/delete" method="post">
+                                            <input type="hidden" name="id_vehicle" value="<?= $vehicle['id_vehicle'] ?>">
+                                            <button type="submit" class="border-0 bg-secondary-subtle"><i class="bi bi-trash3"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                         <?php }

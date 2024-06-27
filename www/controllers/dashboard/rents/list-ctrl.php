@@ -11,6 +11,8 @@ try {
         $newEnddate = new DateTime($rent['enddate']);
         $rent['startdate'] = $newStartdate->format('d/m/Y');
         $rent['enddate'] = $newEnddate->format('d/m/Y');
+        var_dump(strtotime($rent['startdate']) < strtotime(date('Y-m-d H:i:s')));
+        //if(strtotime($rent['startdate'])<strtotime(date()))
     }
 } catch (\PDOException $e) {
     $error = $e->getMessage();

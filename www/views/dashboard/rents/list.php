@@ -15,7 +15,7 @@
                             <th>Véhicule</th>
                             <th>Immatriculation</th>
                             <th>Client</th>
-                            <th>Date dé confirmation</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -28,7 +28,7 @@
                                 <td><?= $rent['vehicleName'] ?></td>
                                 <td><?= $rent['registration'] ?></td>
                                 <td><?= $rent['clientName'] ?></td>
-                                <td><?= $rent['confirmed_at'] ?></td>
+                                <td><?php ?></td>
                                 <th>
                                     <?php if (empty($rent['confirmed_at'])) { ?>
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $rent['id_rent'] ?>">
