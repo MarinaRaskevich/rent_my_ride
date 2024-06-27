@@ -40,3 +40,17 @@ function getFlash()
     unset($_SESSION['flashes']);
     return $flash;
 }
+
+function sendMail(string $mail, string $clientName)
+{
+    $to      = $mail;
+    $subject = 'Confirmation de votre réservation de véhicule';
+    $message = 'Cher(e)';
+    $headers = array(
+        'From' => 'webmaster@example.com',
+        'Reply-To' => 'webmaster@example.com',
+        'X-Mailer' => 'PHP/' . phpversion()
+    );
+
+    mail($to, $subject, $message, $headers);
+}

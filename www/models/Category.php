@@ -109,4 +109,13 @@ class Category extends BaseModel
         }
         return $sthExecute;
     }
+
+    // Statictics home page dashboard
+    public function getTotal(): int
+    {
+        $sql = "SELECT count(`id_category`) AS 'nbCategories' FROM `categories`;";
+        $sth = $this->db->query($sql);
+        $totalNumber = $sth->fetch();
+        return $totalNumber->nbCategories;
+    }
 }

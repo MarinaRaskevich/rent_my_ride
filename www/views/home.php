@@ -10,7 +10,7 @@
         <h1 class="text-center fs-3 fw-bold">Nos voitures</h3>
             <div class="sort mb-3">
                 <p class="mb-0 text-secondary">Trier par:</p>
-                <form method="post" class="d-flex w-25">
+                <form method="post" class="d-flex">
                     <select name="category" id="category" class="form-select me-2">
                         <option value="all">Toutes catégories</option>
                         <?php foreach ($categoryList as $category) {
@@ -22,7 +22,7 @@
             </div>
             <div class="row g-3">
                 <?php foreach ($vehiclesList as $vehicle) { ?>
-                    <div class="col-3">
+                    <div class="col-12 col-lg-3">
                         <div class="card shadow">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>

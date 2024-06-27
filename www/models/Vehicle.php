@@ -257,7 +257,7 @@ class Vehicle extends BaseModel
         return $nbItems;
     }
 
-    public function getMatchForSearch($query)
+    public function getMatchForSearch($query): array
     {
         $sql = "SELECT `id_vehicle`, `brand`, `model`
             FROM `vehicles` 
@@ -270,7 +270,7 @@ class Vehicle extends BaseModel
         return $vehiclesList;
     }
 
-    public function getAll($id_category)
+    public function getAll($id_category): array
     {
         $sql = "SELECT `brand`, `model` AS `vehicleName` FROM `vehicles` WHERE `id_category` = :id_category;";
         $sth = $this->db->prepare($sql);
@@ -312,13 +312,12 @@ class Vehicle extends BaseModel
     //     return $pictureName;
     // }
 
-    //Statictics home page dashboard
-    // public static function getTotal()
-    // {
-    //     $pdo = dbConnect();
-    //     $sql = 'SELECT count(`id`) FROM `vehicles`;';
-    //     $sth = $pdo->query($sql);
-    //     $totalNumber = $sth->fetch();
-    //     return $totalNumber;
-    // }
+    // Statictics home page dashboard
+    public function getTotal(): int
+    {
+        $sql = "SELECT count(`id_vehicle`) AS 'nbVehicles' FROM `vehicles`;";
+        $sth = $this->db->query($sql);
+        $totalNumber = $sth->fetch();
+        return $totalNumber->nbVehicles;
+    }
 }

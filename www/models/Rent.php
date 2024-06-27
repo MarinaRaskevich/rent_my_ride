@@ -117,7 +117,7 @@ class Rent extends BaseModel
 
     public function getAll(): array
     {
-        $sql = "SELECT `rents`.*, CONCAT(`vehicles`.`brand`,' ', `vehicles`.`model`) AS 'vehicleName', CONCAT(`clients`.`lastname`,' ',`clients`.`firstname`) AS 'clientName'
+        $sql = "SELECT `rents`.*, `vehicles`.`registration`, CONCAT(`vehicles`.`brand`,' ', `vehicles`.`model`) AS 'vehicleName', CONCAT(`clients`.`lastname`,' ',`clients`.`firstname`) AS 'clientName'
             FROM `rents` 
             INNER JOIN `vehicles` 
             ON `rents`.`id_vehicle` = `vehicles`.`id_vehicle`
@@ -126,5 +126,14 @@ class Rent extends BaseModel
         $sth = $this->db->query($sql);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Statictics home page dashboard
+    public function getTotal(): int
+    {
+        $sql = "SELECT count(`id_rent`) AS 'nbRents' FROM `rents`;";
+        $sth = $this->db->query($sql);
+        $totalNumber = $sth->fetch();
+        return $totalNumber->nbRents;
     }
 }

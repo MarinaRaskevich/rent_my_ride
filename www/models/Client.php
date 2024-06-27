@@ -151,4 +151,13 @@ class Client extends BaseModel
     {
         return $this->db->lastInsertId();
     }
+
+    // Statictics home page dashboard
+    public function getTotal(): int
+    {
+        $sql = "SELECT count(`id_client`) AS 'nbClients' FROM `clients`;";
+        $sth = $this->db->query($sql);
+        $totalNumber = $sth->fetch();
+        return $totalNumber->nbClients;
+    }
 }
