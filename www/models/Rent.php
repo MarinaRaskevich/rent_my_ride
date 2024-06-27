@@ -128,22 +128,37 @@ class Rent extends BaseModel
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Statictics home page dashboard // SI IL N'Y A PAS LA COLONNE 'STATUS'
-    public function getUpcomingRents(): int
+    public function getRentsWithPreciseStatus(string $status)
     {
-        $sql = "SELECT count(`id_rent`) AS 'nbRents' FROM `rents` WHERE (`startdate` > CURRENT_TIMESTAMP) AND (`enddate` > CURRENT_TIMESTAMP);";
-        $sth = $this->db->query($sql);
-        $totalNumber = $sth->fetch();
-        return $totalNumber->nbRents;
+        $sql = "SELECT `rents`.*, `vehicles`.`registration`, CONCAT(`vehicles`.`brand`,' ', `vehicles`.`model`) AS 'vehicleName', CONCAT(`clients`.`lastname`,' ',`clients`.`firstname`) AS 'clientName'
+        FROM `rents` 
+        INNER JOIN `vehicles` 
+        ON `rents`.`id_vehicle` = `vehicles`.`id_vehicle`
+        INNER JOIN `clients` 
+        ON `rents`.`id_client` = `clients`.`id_client` 
+        WHERE `status` = :status;";
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':status', $status);
+        $sth->execute();
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getCurrentRents(): int
-    {
-        $sql = "SELECT count(`id_rent`) AS 'nbRents' FROM `rents` WHERE (`startdate` < CURRENT_TIMESTAMP) AND (`enddate` > CURRENT_TIMESTAMP);";
-        $sth = $this->db->query($sql);
-        $totalNumber = $sth->fetch();
-        return $totalNumber->nbRents;
-    }
+    // Statictics home page dashboard // SI IL N'Y A PAS LA COLONNE 'STATUS'
+    // public function getUpcomingRents(): int
+    // {
+    //     $sql = "SELECT count(`id_rent`) AS 'nbRents' FROM `rents` WHERE (`startdate` > CURRENT_TIMESTAMP) AND (`enddate` > CURRENT_TIMESTAMP);";
+    //     $sth = $this->db->query($sql);
+    //     $totalNumber = $sth->fetch();
+    //     return $totalNumber->nbRents;
+    // }
+
+    // public function getCurrentRents(): int
+    // {
+    //     $sql = "SELECT count(`id_rent`) AS 'nbRents' FROM `rents` WHERE (`startdate` < CURRENT_TIMESTAMP) AND (`enddate` > CURRENT_TIMESTAMP);";
+    //     $sth = $this->db->query($sql);
+    //     $totalNumber = $sth->fetch();
+    //     return $totalNumber->nbRents;
+    // }
 
     public function getNonConfirmedRents(): int
     {

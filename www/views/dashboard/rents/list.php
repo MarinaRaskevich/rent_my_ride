@@ -5,9 +5,6 @@
             <?php include __DIR__ . '/../templates/navbar.php'; ?>
         </div>
         <div class="col-10 pt-3" id="content">
-            <form method="post">
-                <select name="" id=""></select>
-            </form>
             <div class="tableDashboard">
                 <table>
                     <thead>
@@ -18,7 +15,20 @@
                             <th>Véhicule</th>
                             <th>Immatriculation</th>
                             <th>Client</th>
-                            <th>Status</th>
+                            <th>
+                                <div class="dropdown">
+                                    <a class="btn dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Status
+                                    </a>
+
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="?page=rents/list&status=incoming">à venir</a></li>
+                                        <li><a class="dropdown-item" href="?page=rents/list&status=finished">passé</a></li>
+                                        <li><a class="dropdown-item" href="?page=rents/list&status=inprogress">en cours</a></li>
+                                        <li><a class="dropdown-item" href="?page=rents/list&status=all">toutes</a></li>
+                                    </ul>
+                                </div>
+                            </th>
                             <th></th>
                         </tr>
                     </thead>

@@ -11,7 +11,4 @@
     <li class="nav-item  <?= $sectionName === 'Réservations' ? 'navbar_home' : '' ?> py-1">
         <a class="nav-link" href="?page=rents/list"><i class="bi bi-calendar3 me-1"></i>Réservations</a>
     </li>
-    <li class="nav-item <?= $sectionName === 'Clients' ? 'navbar_home' : '' ?> py-1">
-        <a class="nav-link" href="?page=clients/list"><i class="bi bi-person me-1"></i>Clients</a>
-    </li>
 </ul>

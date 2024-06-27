@@ -10,8 +10,8 @@ $categoryModel = new Category();
 $nbCategories = $categoryModel->getTotal();
 
 $rentModel = new Rent();
-$nbCurrentRents = $rentModel->getCurrentRents();
-$nbUpcomingRents = $rentModel->getUpcomingRents();
+$nbCurrentRents = $rentModel->getRentsWithPreciseStatus("en cours");
+$nbUpcomingRents = $rentModel->getRentsWithPreciseStatus("à venir");
 $nbNonConfirmedRents = $rentModel->getNonConfirmedRents();
 
 $clientModel = new Client();

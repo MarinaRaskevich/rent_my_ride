@@ -1,10 +1,34 @@
 <?php
 $sectionName = 'Réservations';
 $title = 'Réservations';
+$rents = null;
 
 try {
-    $rentModel = new Rent();
-    $rents = $rentModel->getAll();
+    $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if ($status) {
+        switch ($status) {
+            case 'incoming':
+                $rentModel = new Rent();
+                $rents = $rentModel->getRentsWithPreciseStatus('à venir');
+                break;
+            case 'finished':
+                $rentModel = new Rent();
+                $rents = $rentModel->getRentsWithPreciseStatus('passée');
+                break;
+            case 'inprogress':
+                $rentModel = new Rent();
+                $rents = $rentModel->getRentsWithPreciseStatus('en cours');
+                break;
+            case 'all':
+                $rentModel = new Rent();
+                $rents = $rentModel->getAll();
+                break;
+        }
+    } else {
+        $rentModel = new Rent();
+        $rents = $rentModel->getAll();
+    }
 
     foreach ($rents as &$rent) {
         // $startdate = strtotime($rent['startdate']);
@@ -26,7 +50,8 @@ try {
     }
 } catch (\PDOException $e) {
     $error = $e->getMessage();
-    renderView('404');
+    var_dump($error);
+    // renderView('404');
 }
 
 renderView('dashboard/rents/list', compact('title', 'sectionName', 'rents'));
