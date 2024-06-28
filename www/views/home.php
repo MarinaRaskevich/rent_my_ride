@@ -42,7 +42,13 @@
                 <?php } ?>
                 <!-- Pagination -->
                 <ul class="d-flex justify-content-between list-unstyled pt-2">
-                    <li><a href="?page=home&part=<?= $currentPage - 1 ?>"><i class="bi bi-arrow-left fs-4 <?= ($currentPage == 1) ? "text-secondary" : "" ?>"></i></a></li>
+                    <li>
+                        <?php if ($currentPage  == 1) { ?>
+                            <i class="bi bi-arrow-left fs-4 text-secondary"></i>
+                        <?php } else { ?>
+                            <a href="?page=home&part=<?= $currentPage - 1 ?>"><i class="bi bi-arrow-left fs-4 text-black"></i></a>
+                        <?php } ?>
+                    </li>
                     <div class="d-flex justify-content-between align-items-center">
                         <?php for ($page = 1; $page <= $pages; $page++) { ?>
                             <!-- Lien vers chacune des pages (activé si on se trouve sur la page correspondante) -->
@@ -53,7 +59,11 @@
                     </div>
                     <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
                     <li>
-                        <a href="?page=home&part=<?= $currentPage + 1 ?>" class="page-link"><i class="bi bi-arrow-right fs-4 <?= ($currentPage == $pages) ? "text-secondary" : "" ?>"></i></a>
+                        <?php if ($currentPage  == $pages) { ?>
+                            <i class="bi bi-arrow-right fs-4 text-secondary"></i>
+                        <?php } else { ?>
+                            <a href="?page=home&part=<?= $currentPage + 1 ?>" class="page-link"><i class="bi bi-arrow-right fs-4 text-black"></i></a>
+                        <?php } ?>
                     </li>
                 </ul>
             </div>

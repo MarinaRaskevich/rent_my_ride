@@ -101,8 +101,8 @@ a {
 /***** LIST.PHP CATEGORIES  ********/
 .categoryList table {
   border-collapse: collapse;
-  margin-top: 3%;
   margin-bottom: 3%;
+  width: 100%;
 }
 
 .categoryList table th,
@@ -111,14 +111,13 @@ td {
   padding: 1.5%;
 }
 
-.categoryList thead {
-  border-bottom: 2px solid #0053af;
-  font-size: 1.5em;
-  text-align: left;
+.categoryList table tr {
+  border-bottom: 1px solid #0052af5c;
 }
 
-.categoryList tbody {
-  font-size: 1.2em;
+.categoryList thead {
+  border-bottom: 2px solid #0053af;
+  text-align: left;
 }
 
 /************ LIST.PHP VEHICLES  ************/
@@ -137,7 +136,7 @@ td {
 .tableDashboard table th,
 tr,
 td {
-  padding: 10px;
+  padding: 1.5%;
 }
 
 .tableDashboard thead {
@@ -152,7 +151,7 @@ td {
 }
 
 .img-cell {
-  width: 17%;
+  width: 15%;
 }
 
 /* CLIENTS */

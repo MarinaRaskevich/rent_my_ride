@@ -35,11 +35,11 @@
                                     <td><?= $vehicle['mileage'] ?></td>
                                     <td><?= $vehicle['price'] ?></td>
                                     <td><?= $vehicle['name'] ?></td>
-                                    <td><a href="?page=vehicles/update&id=<?= $vehicle['id_vehicle'] ?>"><i class="bi bi-pencil text-black fs-5"></i></td>
+                                    <td><a href="?page=vehicles/update&id=<?= $vehicle['id_vehicle'] ?>"><i class="bi bi-pencil text-black fs-6"></i></td>
                                     <td>
                                         <form class="modal-form" data-name="<?= $vehicle['brand'] . ' ' . $vehicle['model'] ?>" action="?page=vehicles/delete" method="post">
                                             <input type="hidden" name="id_vehicle" value="<?= $vehicle['id_vehicle'] ?>">
-                                            <button type="submit" class="border-0 bg-secondary-subtle"><i class="bi bi-trash3 fs-5"></i></button>
+                                            <button type="submit" class="border-0 bg-secondary-subtle"><i class="bi bi-trash3 fs-6"></i></button>
                                         </form>
                                     </td>
                                 </tr>

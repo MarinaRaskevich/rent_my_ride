@@ -9,7 +9,7 @@
             <p>Catégorie: <?= $vehicle->name ?></p>
             <p>Numéro d'immatriculation: <?= $vehicle->registration ?></p>
             <p>Kilométrage: <?= $vehicle->mileage ?></p>
-            <p>Prix: <?= $vehicle->price ?>€ / par jour</p>
+            <p class="fw-bold">Prix: <?= $vehicle->price ?>€ / par jour</p>
             <a href="?page=booking&id=<?= $vehicle->id_vehicle ?>" class="btn btn-primary">Réserver</a>
         </div>
     </div>

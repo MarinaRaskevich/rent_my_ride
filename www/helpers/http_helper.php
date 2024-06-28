@@ -73,7 +73,6 @@ function sendMail(string $mail, string $clientName, string $startdate, string $e
     <li><strong>Date de prise en charge :</strong> $startdate</li>
     <li><strong>Date de retour :</strong> $enddate</li>
     <li><strong>Véhicule réservé :</strong> $vehicleName</li>
-    <li><strong>Prix total :</strong> 350,00 € (TVA incluse)</li>
   </ul>
   <p>Si vous avez des questions ou besoin de modifier votre réservation, n'hésitez pas à nous contacter à contact@rentmyride.com ou par téléphone au 0104054545.</p>
   <p>Merci de votre confiance et à bientôt.</p>

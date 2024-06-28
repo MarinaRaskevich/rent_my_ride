@@ -11,12 +11,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th colspan="2"> <a href="?page=categories/add" class="text-black"><i class="bi bi-plus-lg"></i></th>
+                            <th>ID</th>
+                            <th class="fw-bold fs-5">Nom</th>
+                            <th class="fw-bold fs-5" colspan="2"> <a href="?page=categories/add" class="text-black"><i class="bi bi-plus-lg"></i></th>
                         </tr>
                     </thead>
                     <?php foreach ($categoryList as $category) { ?>
                         <tr>
+                            <td><?= $category['id_category'] ?></td>
                             <td><?= $category['name'] ?></td>
                             <td><a href="?page=categories/update&id=<?= $category['id_category'] ?>" class="text-black"><i class="bi bi-pencil"></i></a>
                             </td>
