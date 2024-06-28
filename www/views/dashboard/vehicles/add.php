@@ -34,6 +34,12 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="price" class="form-label fw-bold">Prix par jour <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="price" name="price" placeholder="ex. 35" value="<?= $data['price'] ?? '' ?>" required>
+                            <span class="small text-danger"><?= $errors['price'][0] ?? '' ?></span>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="category" class="form-label fw-bold">Sélectionnez la catégorie de voiture <span class="text-danger">*</span></label>
                             <select class="form-select" name="category" id="category" required>
                                 <option disabled>---Sélectionnez la catégorie---</option>

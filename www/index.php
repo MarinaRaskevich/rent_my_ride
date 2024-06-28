@@ -6,6 +6,7 @@ require_once './helpers/validatorRules/RequiredRule.php';
 require_once './helpers/validatorRules/MaxRule.php';
 require_once './helpers/validatorRules/RegexRule.php';
 require_once './helpers/validatorRules/EmailRule.php';
+require_once './helpers/validatorRules/AgeRule.php';
 require_once './helpers/Validator.php';
 require_once './helpers/http_helper.php';
 require_once './models/Category.php';

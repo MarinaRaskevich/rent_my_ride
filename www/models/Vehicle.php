@@ -10,12 +10,13 @@ class Vehicle extends BaseModel
     private string $registration;
     private int $mileage;
     private string $picture;
+    private int $price;
     private string $created_at;
     private string $updated_at;
     private string $deleted_at;
     private int $id_category;
 
-    public function __construct(string $brand = '', string $model = '', string $registration = '', int $mileage = 0, string $picture = '')
+    public function __construct(string $brand = '', string $model = '', string $registration = '', int $mileage = 0, string $picture = '', int $price = 0)
     {
         $this->brand = $brand;
         $this->model = $model;
@@ -23,6 +24,7 @@ class Vehicle extends BaseModel
         $this->mileage = $mileage;
         // $this->id_category = $id_category;
         $this->picture = $picture;
+        $this->price = $price;
         parent::__construct();
     }
 
@@ -55,6 +57,11 @@ class Vehicle extends BaseModel
     public function setPicture(string $picture): void
     {
         $this->picture = $picture;
+    }
+
+    public function setPrice(string $price): void
+    {
+        $this->price = $price;
     }
 
     public function setCreated_at(string $created_at): void
@@ -109,6 +116,11 @@ class Vehicle extends BaseModel
         return $this->picture;
     }
 
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
     public function getCreated_at(): string
     {
         return $this->created_at;
@@ -132,13 +144,14 @@ class Vehicle extends BaseModel
     // Ajouter une véhicule en base de données 
     public function insert()
     {
-        $sql = 'INSERT INTO `vehicles`(`brand`, `model`, `registration`, `mileage`,  `picture`, `created_at`, `id_category`) VALUES (:brand, :model, :registration, :mileage, :picture, :created_at, :id_category);';
+        $sql = 'INSERT INTO `vehicles`(`brand`, `model`, `registration`, `mileage`,  `picture`, `price`, `created_at`, `id_category`) VALUES (:brand, :model, :registration, :mileage, :picture, :price :created_at, :id_category);';
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':brand', $this->getBrand(), PDO::PARAM_STR);
         $sth->bindValue(':model', $this->getModel(), PDO::PARAM_STR);
         $sth->bindValue(':registration', $this->getRegistration(), PDO::PARAM_STR);
         $sth->bindValue(':mileage', $this->getMileage(), PDO::PARAM_INT);
         $sth->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
+        $sth->bindValue(':price', $this->getPrice(), PDO::PARAM_STR);
         $sth->bindValue(':created_at', $this->getCreated_at(), PDO::PARAM_STR);
         $sth->bindValue(':id_category', $this->getId_category(), PDO::PARAM_INT);
         $sthExecute = $sth->execute();

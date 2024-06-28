@@ -6,7 +6,8 @@ class Validator
         'required' => RequiredRule::class,
         'max' => MaxRule::class,
         'regex' => RegexRule::class,
-        'email' => EmailRule::class
+        'email' => EmailRule::class,
+        'age' => AgeRule::class
         // 'date' => DateRule::class,
     ];
     private static $errors;

@@ -1,6 +1,7 @@
 <?php
 $title = "Réservation";
 $script = 'citiesApi';
+$errors =  [];
 
 try {
     if (!isset($_GET['id'])) {
@@ -33,7 +34,7 @@ try {
         $rules = [
             'lastname' => 'required|max:50|regex:REGEX_NAME',
             'firstname' => 'required|max:50|regex:REGEX_NAME',
-            'birthdate' => 'required|regex:REGEX_DATE',
+            'birthdate' => 'required|regex:REGEX_DATE|age',
             'email' => 'required|max:255|email',
             'phone' => 'required|regex:REGEX_PHONE',
             'city' => 'required|max:100',
@@ -84,4 +85,4 @@ try {
     // renderView('404');
 }
 
-renderView('booking', compact('title', 'vehicle', 'script'));
+renderView('booking', compact('title', 'vehicle', 'errors', 'script'));

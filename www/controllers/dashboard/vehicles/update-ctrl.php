@@ -24,6 +24,7 @@ try {
         $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $registration = filter_input(INPUT_POST, 'registration', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $mileage = filter_input(INPUT_POST, 'mileage', FILTER_SANITIZE_NUMBER_INT);
+        $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_INT);
         $categoryId = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $existingPicture = filter_input(INPUT_POST, 'existingPicture', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $isDeleted = filter_input(INPUT_POST, 'isDeleted', FILTER_SANITIZE_NUMBER_INT);
@@ -86,6 +87,7 @@ try {
             'model' => 'required|max:50',
             'registration' => 'required|regex:REGEX_REGISTRATION',
             'mileage' => 'required|regex:REGEX_MILEAGE',
+            'price' => 'required',
             'categoryId' => 'required'
         ];
 
@@ -94,6 +96,7 @@ try {
             'model' => $model,
             'registration' => $registration,
             'mileage' => $mileage,
+            'price' => $price,
             'categoryId' => $categoryId
         ];
 
@@ -102,7 +105,7 @@ try {
 
         /// création d'un nouveau objet depuis la classe Vehicle ///////
         if (empty($errors)) {
-            $vehicle = new Vehicle($brand, $model, $registration, intval($mileage), $fileName);
+            $vehicle = new Vehicle($brand, $model, $registration, intval($mileage), $fileName, $price);
             $vehicle->setId_category(intval($categoryId));
             $vehicle->setUpdated_at($updated_at);
             $vehicle->setId_vehicle(intval($id));

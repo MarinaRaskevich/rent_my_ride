@@ -19,7 +19,7 @@
                 <div class="mb-3">
                     <label for="birthdate" class="form-label mb-1">Date de naissance <span class="text-danger">*</span></label>
                     <input type="date" class="form-control" id="birthdate" name="birthdate" pattern="<?= REGEX_DATE ?>" value="<?= $birthdate ?? '' ?>" required>
-                    <span class="small text-danger"><?= $errors['birthdate'][0][0] ?? '' ?></span>
+                    <span class="small text-danger"><?= $errors['birthdate'][0] ?? '' ?></span>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label mb-1">Votre email <span class="text-danger">*</span></label>
@@ -45,7 +45,7 @@
 
                 <div class="mb-3">
                     <label for="startdate" class="form-label mb-1">Date de début <span class="text-danger">*</span></label>
-                    <input class="form-control" type="date" id="startdate" name="startdate" value="<?= $startdate ?? '' ?>" pattern="<?= REGEX_DATE ?>" required>
+                    <input class="form-control" type="date" id="startdate" name="startdate" value="<?= $startdate ?? '' ?>" pattern="<?= REGEX_DATE ?>" min="<?= date('Y-m-d') ?>" required>
                     <span class="small text-danger"><?= $errors['startdate'][0] ?? '' ?></span>
                 </div>
 

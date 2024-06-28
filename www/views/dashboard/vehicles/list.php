@@ -16,9 +16,8 @@
                             <th>Modèle</th>
                             <th>Immatriculation</th>
                             <th>Kilométrage</th>
+                            <th>Prix</th>
                             <th><a href="?page=vehicles/list&column=name&order=<?= ($order == 'DESC') ? 'ASC' : 'DESC' ?>">Catégorie <i class="bi bi-sort-alpha-down<?= ($order == 'DESC') ? '' : '-alt' ?> fs-5"></a></th>
-                            <!-- <th>Date de création</th> -->
-                            <!-- <th>Date de modification</th> -->
                             <th colspan="2"><a href="?page=vehicles/add"><i class="bi bi-plus-lg fs-4"></i></th>
                         </tr>
                     </thead>
@@ -34,9 +33,8 @@
                                     <td><?= $vehicle['model'] ?></td>
                                     <td><?= $vehicle['registration'] ?></td>
                                     <td><?= $vehicle['mileage'] ?></td>
+                                    <td><?= $vehicle['price'] ?></td>
                                     <td><?= $vehicle['name'] ?></td>
-                                    <!-- <td><?= $vehicle['created_at'] ?></td> -->
-                                    <!-- <td><?= $vehicle['updated_at'] ?></td> -->
                                     <td><a href="?page=vehicles/update&id=<?= $vehicle['id_vehicle'] ?>"><i class="bi bi-pencil text-black fs-5"></i></td>
                                     <td>
                                         <form class="delete-form" data-name="<?= $vehicle['brand'] . ' ' . $vehicle['model'] ?>" action="?page=vehicles/delete" method="post">

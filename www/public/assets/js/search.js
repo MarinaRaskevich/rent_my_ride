@@ -37,7 +37,7 @@ const getResults = (e) => {
           // Générer le HTML des résultats
           let resultsHTML = results
             .map((result) => {
-              return `<div><a class="search_bar_result text-decoration-none" href="/controllers/clients/vehicle-detail-ctrl.php?id=${result.id_vehicle}">${result.brand} ${result.model}</a></div>`;
+              return `<div><a class="search_bar_result text-decoration-none" href="?page=vehicle/detail&id=${result.id_vehicle}">${result.brand} ${result.model}</a></div>`;
             })
             .join("");
           searchResults.innerHTML = resultsHTML;
