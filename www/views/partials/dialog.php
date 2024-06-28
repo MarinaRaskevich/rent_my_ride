@@ -4,9 +4,9 @@
             <div class="modal-body my-2">
             </div>
             <div class="modal-footer">
-                <button type="button" data-valid="true" class="btn btn-primary">Supprimer</button>
+                <button type="button" data-valid="true" class="btn btn-primary">Valider</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
             </div>
         </div>
     </div>
-</div>
+</div> 

@@ -33,6 +33,7 @@ $path = match ($page) {
     'vehicles/update' => 'dashboard/vehicles/update',
     'vehicles/delete' => 'dashboard/vehicles/delete',
     'rents/list' => 'dashboard/rents/list',
+    'rents/confirm' => 'dashboard/rents/confirm',
     'dashboard/home' => 'dashboard/home',
     '', 'home' => 'home',
     'search' => 'search',

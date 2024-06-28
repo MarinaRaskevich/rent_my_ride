@@ -2,7 +2,7 @@
 
 $title = 'Véhicules';
 $sectionName = 'Véhicules';
-$script = 'deleteAction';
+$script = 'showModal';
 
 try {
     $column = filter_input(INPUT_GET, 'column', FILTER_SANITIZE_SPECIAL_CHARS);

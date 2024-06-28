@@ -1,7 +1,7 @@
 <?php
 $sectionName = 'Catégorie';
 $title = 'Catégories';
-$script = 'deleteAction';
+$script = 'showModal';
 
 try {
     $category = new Category();

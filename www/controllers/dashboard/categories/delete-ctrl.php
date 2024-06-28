@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $categoryModel = new Category();
         $isOk = $categoryModel->delete($id);
         if ($isOk != false) {
+            addFlash('success', 'Suppression effectué avec succès !');
             redirectToRoute('?page=categories/list');
         } else {
             renderView('404');

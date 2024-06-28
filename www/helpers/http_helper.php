@@ -41,16 +41,52 @@ function getFlash()
     return $flash;
 }
 
-function sendMail(string $mail, string $clientName)
-{
-    $to      = $mail;
-    $subject = 'Confirmation de votre réservation de véhicule';
-    $message = 'Cher(e)';
-    $headers = array(
-        'From' => 'webmaster@example.com',
-        'Reply-To' => 'webmaster@example.com',
-        'X-Mailer' => 'PHP/' . phpversion()
-    );
+// function sendMail(string $mail, string $clientName)
+// {
+//     $to      = $mail;
+//     $subject = 'Confirmation de votre réservation de véhicule';
+//     $message = 'Cher(e)';
+//     $headers = array(
+//         'From' => 'webmaster@example.com',
+//         'Reply-To' => 'webmaster@example.com',
+//         'X-Mailer' => 'PHP/' . phpversion()
+//     );
 
-    mail($to, $subject, $message, $headers);
+//     mail($to, $subject, $message, $headers);
+// }
+
+function sendMail(string $mail, string $clientName, string $startdate, string $enddate, string $vehicleName): bool
+{
+    $to = $mail;
+    $subject = 'Confirmation de votre réservation de véhicule';
+    $message = "
+<html>
+<head>
+  <title>Confirmation de votre réservation de véhicule</title>
+</head>
+<body>
+  <p>Cher(e) $clientName,</p>
+  <p>Nous avons le plaisir de vous confirmer que votre réservation de véhicule a été effectuée avec succès. Vous trouverez ci-dessous les détails de votre réservation :</p>
+  <p><strong>Détails de la réservation :</strong></p>
+  <ul>
+    <li><strong>Nom :</strong> $clientName</li>
+    <li><strong>Date de prise en charge :</strong> $startdate</li>
+    <li><strong>Date de retour :</strong> $enddate</li>
+    <li><strong>Véhicule réservé :</strong> $vehicleName</li>
+    <li><strong>Prix total :</strong> 350,00 € (TVA incluse)</li>
+  </ul>
+  <p>Si vous avez des questions ou besoin de modifier votre réservation, n'hésitez pas à nous contacter à contact@rentmyride.com ou par téléphone au 0104054545.</p>
+  <p>Merci de votre confiance et à bientôt.</p>
+  <p>Cordialement,</p>
+  <p>L'équipe de Rent My Ride</p>
+</body>
+</html>
+";
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: ras.risha@gmail.com\r\n";
+    $headers .= "Reply-To: ras.risha@gmail.com\r\n";
+    $headers .= "X-Mailer: PHP/" . phpversion();
+
+    return mail($to, $subject, $message, $headers);
 }

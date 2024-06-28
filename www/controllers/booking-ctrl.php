@@ -67,7 +67,7 @@ try {
             $isOkClient = $client->insert();
             $id_client = $client->getLastInsertId();
 
-            $rent = new Rent(new DateTime($startdate), new DateTime($enddate), $id_vehicle, $id_client);
+            $rent = new Rent(new DateTime($startdate), new DateTime($enddate), $id_vehicle, $id_client, 'à venir');
             $isOkRent = $rent->insert();
 
             if ($isOkRent && $isOkClient) {

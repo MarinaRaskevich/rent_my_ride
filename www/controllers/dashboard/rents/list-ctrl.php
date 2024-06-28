@@ -2,31 +2,29 @@
 $sectionName = 'Réservations';
 $title = 'Réservations';
 $rents = null;
+$script = 'showModal';
 
 try {
     $status = filter_input(INPUT_GET, 'status', FILTER_SANITIZE_SPECIAL_CHARS);
 
+    $rentModel = new Rent();
+
     if ($status) {
         switch ($status) {
             case 'incoming':
-                $rentModel = new Rent();
                 $rents = $rentModel->getRentsWithPreciseStatus('à venir');
                 break;
             case 'finished':
-                $rentModel = new Rent();
                 $rents = $rentModel->getRentsWithPreciseStatus('passée');
                 break;
             case 'inprogress':
-                $rentModel = new Rent();
                 $rents = $rentModel->getRentsWithPreciseStatus('en cours');
                 break;
             case 'all':
-                $rentModel = new Rent();
                 $rents = $rentModel->getAll();
                 break;
         }
     } else {
-        $rentModel = new Rent();
         $rents = $rentModel->getAll();
     }
 
@@ -54,4 +52,4 @@ try {
     // renderView('404');
 }
 
-renderView('dashboard/rents/list', compact('title', 'sectionName', 'rents'));
+renderView('dashboard/rents/list', compact('title', 'sectionName', 'rents', 'script'));

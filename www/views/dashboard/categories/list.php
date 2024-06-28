@@ -21,7 +21,7 @@
                             <td><a href="?page=categories/update&id=<?= $category['id_category'] ?>" class="text-black"><i class="bi bi-pencil"></i></a>
                             </td>
                             <td>
-                                <form class="delete-form" data-name="<?= $category['name'] ?>" action="?page=categories/delete" method="post">
+                                <form class="modal-form" data-name="<?= $category['name'] ?>" action="?page=categories/delete" method="post">
                                     <input type="hidden" name="id_category" value="<?= $category['id_category'] ?>">
                                     <button type="submit" class="border-0 bg-secondary-subtle"><i class="bi bi-trash3"></i></button>
                                 </form>

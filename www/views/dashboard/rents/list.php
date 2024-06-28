@@ -5,6 +5,8 @@
             <?php include __DIR__ . '/../templates/navbar.php'; ?>
         </div>
         <div class="col-10 pt-3" id="content">
+            <?php include __DIR__ . '/../../partials/message.php'; ?>
+            <?php include __DIR__ . '/../../partials/dialog.php'; ?>
             <div class="tableDashboard">
                 <table>
                     <thead>
@@ -44,9 +46,13 @@
                                 <td><?= $rent['status'] ?></td>
                                 <th>
                                     <?php if (empty($rent['confirmed_at'])) { ?>
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $rent['id_rent'] ?>">
+                                        <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#<?= $rent['id_rent'] ?>">
                                             Confirmer
-                                        </button>
+                                        </button> -->
+                                        <form class="modal-form" data-name="rent" action="?page=rents/confirm" method="post">
+                                            <input type="hidden" name="id_rent" value="<?= $rent['id_rent'] ?>">
+                                            <button type="submit" class="btn btn-success">Confirmer</button>
+                                        </form>
                                     <?php } else { ?>
                                         <i class="bi bi-check-circle text-success"></i>
                                     <?php  } ?>
