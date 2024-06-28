@@ -24,10 +24,14 @@
                                     </a>
 
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="?page=rents/list&status=incoming">à venir</a></li>
+                                        <?php //foreach (RENT_STATUS as $key => $status) : 
+                                        ?>
+                                        <li><a class="dropdown-item" href="?page=rents/list&status=$key">à venir</a></li>
                                         <li><a class="dropdown-item" href="?page=rents/list&status=finished">passé</a></li>
                                         <li><a class="dropdown-item" href="?page=rents/list&status=inprogress">en cours</a></li>
-                                        <li><a class="dropdown-item" href="?page=rents/list&status=all">toutes</a></li>
+                                        <li><a class="dropdown-item" href="?page=rents/list&status=all">tous</a></li>
+                                        <?php //endforeach; 
+                                        ?>
                                     </ul>
                                 </div>
                             </th>

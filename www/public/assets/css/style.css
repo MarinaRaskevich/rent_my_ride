@@ -76,7 +76,8 @@ main > div > .row {
 }
 
 .nav-link:hover {
-  box-shadow: 0px 0px 3px 3px rgba(72, 77, 148, 0.5);
+  box-shadow: 0px 0px 2px 2px #0053af;
+  border-radius: 4px;
 }
 
 .navbar_home {
@@ -99,9 +100,8 @@ a {
 
 /***** LIST.PHP CATEGORIES  ********/
 .categoryList table {
-  width: 50%;
   border-collapse: collapse;
-  margin-top: 6%;
+  margin-top: 3%;
   margin-bottom: 3%;
 }
 
@@ -171,6 +171,10 @@ td {
 
   .hero-text {
     text-shadow: 0.1em 0.1em 0 hsl(200, 55%, 18%);
+  }
+
+  main > div > .row {
+    min-height: 22vh;
   }
 }
 

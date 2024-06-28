@@ -10,7 +10,6 @@ const debounce = (func, delay) => {
 // Fonction principale pour récupérer et afficher les résultats de la recherche
 const getResults = (e) => {
   let searchText = e.target.value; // Récupérer la valeur saisie par l'utilisateur
-  // searchText = removeAccent(searchText); // Supprimer les accents de la valeur saisie
 
   debounce(() => {
     if (searchText.trim() === "") {
@@ -48,12 +47,6 @@ const getResults = (e) => {
     }
   }, 300); // 300ms delay
 };
-
-//fonction pour supprimer les accents des lettres
-// const removeAccent = (str) => {
-//   const normalizedStr = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-//   return normalizedStr;
-// };
 
 searchInput.addEventListener("input", getResults);
 
