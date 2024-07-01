@@ -47,6 +47,4 @@ $path = match ($page) {
 
 
 // Router
-
-//require_once './controllers/' . $path . '-ctrl.php';
 require_once './controllers/' . $path . '.php';

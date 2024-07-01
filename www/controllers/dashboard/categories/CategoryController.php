@@ -92,7 +92,7 @@ class CategoryController
      * @param int $id The ID of the category to delete.
      * @return bool True if the category was deleted successfully, false otherwise.
      */
-    protected function deleteCategory($id)
+    protected function deleteCategory(int $id): bool
     {
         return $this->categoryModel->delete($id);
     }
@@ -102,7 +102,7 @@ class CategoryController
      *
      * @return array An array of all categories.
      */
-    protected function getAllCategories()
+    protected function getAllCategories(): array
     {
         return $this->categoryModel->getAll();
     }
@@ -111,9 +111,9 @@ class CategoryController
      * Retrieve a category by its ID.
      *
      * @param int $id The ID of the category to retrieve.
-     * @return Category The category object.
+     * @return mixed The category object or false.
      */
-    protected function getCategoryById($id)
+    protected function getCategoryById(int $id): mixed
     {
         return $this->categoryModel->getOne($id);
     }
@@ -125,7 +125,7 @@ class CategoryController
      * @param string $name The value to check for.
      * @return bool True if the category exists, false otherwise.
      */
-    protected function isExist($column, $name)
+    protected function isExist(string $column, string $name): bool
     {
         return $this->categoryModel->isExist($column, $name);
     }
@@ -135,7 +135,7 @@ class CategoryController
      *
      * @param string $errorMessage The error message to handle.
      */
-    protected function handleError($errorMessage)
+    protected function handleError($errorMessage): void
     {
         // $errorMessage;
         renderView('404');

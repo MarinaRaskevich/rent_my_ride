@@ -1,8 +1,18 @@
 <?php
 
+/**
+ * Class DeleteCategoryController
+ *
+ * This controller handles the deletion of categories.
+ */
 class DeleteCategoryController extends CategoryController
 {
-    public function handleRequest()
+    /**
+     * Handle the incoming request.
+     *
+     * This method processes the deletion of category if the form is submitted via a POST request.
+     */
+    public function handleRequest(): void
     {
         try {
             if ($this->isPostRequest()) {
@@ -13,6 +23,14 @@ class DeleteCategoryController extends CategoryController
         }
     }
 
+    /**
+     * Process the category deletion.
+     *
+     * This method validates the category ID, checks for any vehicles associated with the category,
+     * and attempts to delete the category if no vehicles are found.
+     *
+     * @throws Exception If the category does not exist or if the deletion fails.
+     */
     private function deleteProcess()
     {
         $id = filter_input(INPUT_POST, 'id_category', FILTER_SANITIZE_NUMBER_INT);
@@ -39,6 +57,7 @@ class DeleteCategoryController extends CategoryController
         redirectToRoute('?page=categories/list');
     }
 }
+
 
 $deleteController = new DeleteCategoryController();
 $deleteController->handleRequest();
