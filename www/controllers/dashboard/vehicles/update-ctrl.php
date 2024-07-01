@@ -12,11 +12,11 @@ try {
         throw new Exception('Une erreur est survenue');
     };
 
-    $category = new Category();
-    $categoryList = $category->getAll();
+    $categoryModel = new Category();
+    $categoryList = $categoryModel->getAll();
 
-    $vehicle = new Vehicle();
-    $oneVehicle = $vehicle->getOne($id);
+    $vehicleModel = new Vehicle();
+    $oneVehicle = $vehicleModel->getOne($id);
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ////////// traitement du formulaire ///////////
@@ -28,6 +28,11 @@ try {
         $categoryId = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $existingPicture = filter_input(INPUT_POST, 'existingPicture', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $isDeleted = filter_input(INPUT_POST, 'isDeleted', FILTER_SANITIZE_NUMBER_INT);
+
+        //Vérifier si la catégorie existe
+        if (!$categoryModel->isExist('id', $categoryId)) {
+            throw new Exception('Cette catégorie n\'existe pas');
+        }
 
         //L'utilisateur a supprimé l'image et n'a pas téléchargé de nouvelle image
         if (empty($_FILES['picture']['name']) && $isDeleted === '1') {
@@ -76,12 +81,6 @@ try {
             }
         }
 
-        /////////// updated_at ///////////
-        $local_timezone = new DateTimeZone("Europe/Paris");
-        $updateTime = new DateTime();
-        $updateTime->setTimezone($local_timezone);
-        $updated_at = $updateTime->format('Y-m-d H:i:s');
-
         $rules = [
             'brand' => 'required|max:50',
             'model' => 'required|max:50',
@@ -107,7 +106,6 @@ try {
         if (empty($errors)) {
             $vehicle = new Vehicle($brand, $model, $registration, intval($mileage), $fileName, $price);
             $vehicle->setId_category(intval($categoryId));
-            $vehicle->setUpdated_at($updated_at);
             $vehicle->setId_vehicle(intval($id));
             $isOk = $vehicle->update();
             if ($isOk) {
