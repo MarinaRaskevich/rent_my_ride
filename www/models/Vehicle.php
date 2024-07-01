@@ -203,7 +203,7 @@ class Vehicle extends BaseModel
     public function update(): bool
     {
         $sql = 'UPDATE `vehicles` 
-        SET `brand` = :brand, `model` = :model, `registration` = :registration, `mileage` = :mileage, `picture` = :picture, `updated_at` = :updated_at
+        SET `brand` = :brand, `model` = :model, `registration` = :registration, `mileage` = :mileage, `picture` = :picture, `updated_at` = NOW()
         WHERE `id_vehicle` = :id_vehicle;';
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':brand', $this->getBrand(), PDO::PARAM_STR);
@@ -211,7 +211,7 @@ class Vehicle extends BaseModel
         $sth->bindValue(':registration', $this->getRegistration(), PDO::PARAM_STR);
         $sth->bindValue(':mileage', $this->getMileage(), PDO::PARAM_INT);
         $sth->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
-        $sth->bindValue(':updated_at', $this->getUpdated_at(), PDO::PARAM_STR);
+        //$sth->bindValue(':updated_at', $this->getUpdated_at(), PDO::PARAM_STR);
         $sth->bindValue(':id_vehicle', $this->getId_vehicle(), PDO::PARAM_INT);
         $sth->execute();
         if ($sth->rowCount() > 0) {
@@ -246,7 +246,7 @@ class Vehicle extends BaseModel
         }
     }
 
-    //Suppression totale + image lié
+    //Suppression totale
     public function totalDelete($id)
     {
         $sql = 'DELETE FROM `vehicles` WHERE `id_vehicle` = :id_vehicle;';

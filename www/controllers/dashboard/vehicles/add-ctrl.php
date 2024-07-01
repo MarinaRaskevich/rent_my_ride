@@ -44,16 +44,18 @@ try {
             $fileName = uniqid('vehicle') . '.' . $extension;
             $file_tmp_name = $_FILES['picture']['tmp_name'];
             $uploads_dir = '/var/www/html/public/uploads/' . $fileName;
-            move_uploaded_file($file_tmp_name, $uploads_dir);
+            if (!move_uploaded_file($file_tmp_name, $uploads_dir)) {
+                $fileName = 'default.png';
+            };
         } else {
             $fileName = 'default.png';
         }
 
         ///////////// created_at ///////////
-        $local_timezone = new DateTimeZone("Europe/Paris");
-        $creationTime = new DateTime();
-        $creationTime->setTimezone($local_timezone);
-        $created_at = $creationTime->format('Y-m-d H:i:s');
+        // $local_timezone = new DateTimeZone("Europe/Paris");
+        // $creationTime = new DateTime();
+        // $creationTime->setTimezone($local_timezone);
+        // $created_at = $creationTime->format('Y-m-d H:i:s');
 
         $rules = [
             'brand' => 'required|max:50|regex:REGEX_NAME',
@@ -81,7 +83,7 @@ try {
         if (empty($errors)) {
             $vehicle = new Vehicle($brand, $model, $registration, intval($mileage), $fileName, $price);
             $vehicle->setId_category(intval($categoryId));
-            $vehicle->setCreated_at($created_at);
+            // $vehicle->setCreated_at($created_at);
             $isOk = $vehicle->insert();
             if ($isOk != false) {
                 addFlash('success', "Le véhicule $brand $model a été ajouté avec succès!");

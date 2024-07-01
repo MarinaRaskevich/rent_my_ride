@@ -38,7 +38,7 @@ try {
 
     $vehiclesList = $vehicle->getAllForClients($categoryId, $firstItem, $nbItemsInOnePage);
 } catch (\PDOException $e) {
-    //throw $th;
+    renderView('404');
 }
 
 renderView('home', compact('title', 'categoryList', 'categoryId', 'vehiclesList', 'currentPage', 'pages', 'script'));

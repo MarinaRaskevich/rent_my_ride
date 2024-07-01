@@ -25,10 +25,10 @@ $page = $_GET['page'] ?? '';
 $page = filter_var($page, FILTER_SANITIZE_SPECIAL_CHARS);
 
 $path = match ($page) {
-    'categories/list' => 'dashboard/categories/list',
+    'categories/list' => 'dashboard/categories/ListCategoryController',
     'categories/add' => 'dashboard/categories/AddCategoryController',
     'categories/update' => 'dashboard/categories/UpdateCategoryController',
-    'categories/delete' => 'dashboard/categories/delete',
+    'categories/delete' => 'dashboard/categories/DeleteCategoryController',
     'vehicles/list' => 'dashboard/vehicles/list',
     'vehicles/add' => 'dashboard/vehicles/add',
     'vehicles/update' => 'dashboard/vehicles/update',
