@@ -5,24 +5,23 @@ require_once __DIR__ . '/../helpers/BaseModel.php';
 class Vehicle extends BaseModel
 {
     private int $id_vehicle;
-    private string $brand;
-    private string $model;
-    private string $registration;
-    private int $mileage;
-    private string $picture;
-    private int $price;
+    private ?string $brand;
+    private ?string $model;
+    private ?string $registration;
+    private ?int $mileage;
+    private ?string $picture;
+    private ?int $price;
     private string $created_at;
     private string $updated_at;
     private string $deleted_at;
     private int $id_category;
 
-    public function __construct(string $brand = '', string $model = '', string $registration = '', int $mileage = 0, string $picture = '', int $price = 0)
+    public function __construct(?string $brand = null, ?string $model = null, ?string $registration = null, ?int $mileage = null, ?string $picture = null, ?int $price = null)
     {
         $this->brand = $brand;
         $this->model = $model;
         $this->registration = $registration;
         $this->mileage = $mileage;
-        // $this->id_category = $id_category;
         $this->picture = $picture;
         $this->price = $price;
         parent::__construct();

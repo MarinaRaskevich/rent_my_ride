@@ -4,10 +4,10 @@ require_once __DIR__ . '/../helpers/BaseModel.php';
 class Category extends BaseModel
 {
     private int $id_category;
-    private string $name;
+    private ?string $name;
 
     //Construct/ Setter/ Getter
-    public function __construct(string $name = '')
+    public function __construct(?string $name = null)
     {
         parent::__construct();
         $this->name = $name;

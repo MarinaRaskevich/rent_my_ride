@@ -4,17 +4,17 @@ require_once __DIR__ . '/../helpers/BaseModel.php';
 class Client extends BaseModel
 {
     private int $id_client;
-    private string $lastname;
-    private string $firstname;
-    private string $email;
+    private ?string $lastname;
+    private ?string $firstname;
+    private ?string $email;
     private DateTime $birthday;
-    private string $phone;
-    private string $city;
-    private string $zipcode;
+    private ?string $phone;
+    private ?string $city;
+    private ?string $zipcode;
     private DateTime $created_at;
     private DateTime $updated_at;
 
-    public function __construct(string $lastname = '', string $firstname = '', string $email = '', string $phone = '', string $city = '', string $zipcode = '')
+    public function __construct(?string $lastname = null, ?string $firstname = null, ?string $email = null, ?string $phone = null, ?string $city = null, ?string $zipcode = null)
     {
         $this->lastname = $lastname;
         $this->firstname = $firstname;
