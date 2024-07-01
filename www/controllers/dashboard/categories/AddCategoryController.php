@@ -1,12 +1,34 @@
 <?php
 
+/**
+ * Class AddCategoryController
+ *
+ * This controller handles the creation of new categories.
+ */
 class AddCategoryController extends CategoryController
 {
-    private $errors = [];
-    private $data = [];
-    private $title = "Création de catégorie";
+    /**
+     * @var array An array to hold any validation errors.
+     */
+    private array $errors = [];
 
-    public function handleRequest()
+    /**
+     * @var array An array to hold form data.
+     */
+    private array $data = [];
+
+    /**
+     * @var string The title of the page.
+     */
+    private string $title = "Création de catégorie";
+
+    /**
+     * Handle the incoming request.
+     *
+     * This method processes the form if the request is a POST request,
+     * and renders the view with the appropriate data.
+     */
+    public function handleRequest(): void
     {
         try {
             if ($this->isPostRequest()) {
@@ -24,7 +46,13 @@ class AddCategoryController extends CategoryController
         ]);
     }
 
-    private function processForm()
+    /**
+     * Process the form data.
+     *
+     * This method sanitizes the input, validates the data, and
+     * attempts to save the new category if the data is valid.
+     */
+    private function processForm(): void
     {
         $newCategoryName = filter_input(INPUT_POST, 'newCategoryName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -43,7 +71,15 @@ class AddCategoryController extends CategoryController
         }
     }
 
-    private function saveCategory($newCategoryName)
+    /**
+     * Save the new category to the database.
+     *
+     * This method checks if the category already exists, and if not,
+     * adds the new category to the database.
+     *
+     * @param string $newCategoryName The name of the new category.
+     */
+    private function saveCategory(string $newCategoryName): void
     {
         $isExist = $this->isExist('name', $newCategoryName);
         if (!$isExist) {
@@ -57,6 +93,7 @@ class AddCategoryController extends CategoryController
         }
     }
 }
+
 
 $addController = new AddCategoryController();
 $addController->handleRequest();

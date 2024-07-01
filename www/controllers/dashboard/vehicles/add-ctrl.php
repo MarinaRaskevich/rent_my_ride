@@ -51,12 +51,6 @@ try {
             $fileName = 'default.png';
         }
 
-        ///////////// created_at ///////////
-        // $local_timezone = new DateTimeZone("Europe/Paris");
-        // $creationTime = new DateTime();
-        // $creationTime->setTimezone($local_timezone);
-        // $created_at = $creationTime->format('Y-m-d H:i:s');
-
         $rules = [
             'brand' => 'required|max:50|regex:REGEX_NAME',
             'model' => 'required|max:50|regex:REGEX_NAME',
