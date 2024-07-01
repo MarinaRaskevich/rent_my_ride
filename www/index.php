@@ -2,6 +2,7 @@
 require_once './config/config.php';
 require_once './helpers/Database.php';
 require_once './helpers/BaseModel.php';
+require_once './controllers/dashboard/categories/CategoryController.php';
 require_once './helpers/validatorRules/RequiredRule.php';
 require_once './helpers/validatorRules/MaxRule.php';
 require_once './helpers/validatorRules/RegexRule.php';
@@ -25,8 +26,8 @@ $page = filter_var($page, FILTER_SANITIZE_SPECIAL_CHARS);
 
 $path = match ($page) {
     'categories/list' => 'dashboard/categories/list',
-    'categories/add' => 'dashboard/categories/add',
-    'categories/update' => 'dashboard/categories/update',
+    'categories/add' => 'dashboard/categories/AddCategoryController',
+    'categories/update' => 'dashboard/categories/UpdateCategoryController',
     'categories/delete' => 'dashboard/categories/delete',
     'vehicles/list' => 'dashboard/vehicles/list',
     'vehicles/add' => 'dashboard/vehicles/add',
@@ -47,4 +48,5 @@ $path = match ($page) {
 
 // Router
 
-require_once './controllers/' . $path . '-ctrl.php';
+//require_once './controllers/' . $path . '-ctrl.php';
+require_once './controllers/' . $path . '.php';
