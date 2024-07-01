@@ -1,0 +1,31 @@
+# RewriteEngine On
+
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+# RewriteCond %{QUERY_STRING} id=([0-9]+)
+# RewriteRule ^/?page=vehicle/detail$ /id%1? [R=301,L,NC]
+# RewriteRule ^id([0-9]+)$ /?page=vehicle/detail&id=$1 [L,QSA]
+
+# RewriteRule ^(.*)$ index.php?page=home [L]
+
+
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+# RewriteRule ^controllers/typeListController\.php$ /accueil [R=301,L,NC]
+# RewriteRule ^accueil$ /controllers/typeListController.php [L,NC]
+
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+# RewriteRule ^controllers/configController\.php$ /parametre [R=301,L,NC]
+# RewriteRule ^parametre$ /controllers/configController.php [L,NC]
+
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+# RewriteRule ^controllers/favourListController\.php$ /favoris [R=301,L,NC]
+# RewriteRule ^favoris$ controllers/favourListController.php [L,NC]
+
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+# RewriteCond %{QUERY_STRING} type=([0-9]+)
+# RewriteRule ^controllers/pokemonListController\.php$ /type%1? [R=301,L,NC]
+# RewriteRule ^type([0-9]+)$ /controllers/pokemonListController.php?type=$1 [L,QSA]
+
+# RewriteCond %{ENV:REDIRECT_STATUS} ^$
+# RewriteCond %{QUERY_STRING} id=([0-9]+)
+# RewriteRule ^controllers/pokemonDetailController\.php$ /pokemon%1? [R=301,L,NC]
+# RewriteRule ^pokemon([0-9]+)$ /controllers/pokemonDetailController.php?id=$1 [L,QSA]
