@@ -5,7 +5,7 @@
  *
  * This controller provides common functionality for handling categories.
  */
-class CategoryController
+abstract class CategoryController
 {
     /**
      * @var Category The category model instance.
@@ -26,6 +26,14 @@ class CategoryController
     {
         $this->categoryModel = new Category();
     }
+
+    /**
+     * Handle the incoming request.
+     * This method must be implemented by all subclasses.
+     *
+     * @return void
+     */
+    abstract public function handleRequest();
 
     /**
      * Check if the request is a POST request.
