@@ -102,7 +102,6 @@ try {
         Validator::validate($data, $rules);
         $errors = Validator::getErrors();
 
-        /// création d'un nouveau objet depuis la classe Vehicle ///////
         if (empty($errors)) {
             $vehicle = new Vehicle($brand, $model, $registration, intval($mileage), $fileName, $price);
             $vehicle->setId_category(intval($categoryId));
