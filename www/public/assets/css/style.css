@@ -55,6 +55,10 @@ main > div > .row {
   height: 12vh;
 }
 
+.logo {
+  width: 30%;
+}
+
 .access {
   color: #0053af;
   width: 20%;

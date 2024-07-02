@@ -1,10 +1,8 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
     <div class="row h-100">
-        <div class="col-2 bg-white">
-            <?php include __DIR__ . '/../templates/navbar.php'; ?>
-        </div>
-        <div class="col-10" id="content">
+        <?php include __DIR__ . '/../templates/navbar.php'; ?>
+        <div class="col-lg-10 col-12" id="content">
             <div class="row d-flex justify-content-center my-5">
                 <div class="col-8">
                     <p class="text-center fw-bold fs-4">Modifier les informations sur la voiture</p>

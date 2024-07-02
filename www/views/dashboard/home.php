@@ -1,9 +1,7 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-lg-2 bg-white pb-2">
-            <?php include __DIR__ . '/templates/navbar.php'; ?>
-        </div>
+        <?php include __DIR__ . '/templates/navbar.php'; ?>
         <div class="col-12 col-lg-10" id="content">
             <h1 class="fs-4 fw-bold text-center py-4">Bonjour!</h1>
             <div class="row">

@@ -1,10 +1,8 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
     <div class="row h-100">
-        <div class="col-2 bg-white">
-            <?php include __DIR__ . '/../templates/navbar.php'; ?>
-        </div>
-        <div class="col-10 pt-3" id="content">
+        <?php include __DIR__ . '/../templates/navbar.php'; ?>
+        <div class="col-lg-10 col-12 pt-3" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
             <?php include __DIR__ . '/../../partials/dialog.php'; ?>
             <div class="tableDashboard">

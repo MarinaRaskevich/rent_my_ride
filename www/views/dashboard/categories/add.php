@@ -1,9 +1,7 @@
 <?php ob_start(); ?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-lg-2 bg-white">
-            <?php include __DIR__ . '/../templates/navbar.php'; ?>
-        </div>
+        <?php include __DIR__ . '/../templates/navbar.php'; ?>
         <div class="col-12 col-lg-10 pt-3" id="content">
             <?php include __DIR__ . '/../../partials/message.php'; ?>
             <div class="row h-100 d-flex justify-content-center align-items-center">

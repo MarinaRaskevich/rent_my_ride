@@ -4,8 +4,9 @@
     </h1>
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6">
+            <span class="small text-danger">* champ obligatoire</span>
             <form method="post">
-                <div class="mb-3">
+                <div class="my-3">
                     <label for="lastname" class="form-label mb-1">Nom <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="lastname" name="lastname" placeholder="ex: Dupont" autocomplete="family-name" maxlength="50" pattern="<?= REGEX_NAME ?>" value="<?= $lastname ?? '' ?>" required>
                     <span class="small text-danger"><?= $errors['lastname'][0] ?? '' ?></span>
