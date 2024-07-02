@@ -32,7 +32,7 @@
                                     <td><?= $vehicle['registration'] ?></td>
                                     <td><?= $vehicle['mileage'] ?></td>
                                     <td><?= $vehicle['price'] ?></td>
-                                    <td><?= $vehicle['name'] ?></td>
+                                    <td><?= $vehicle['categoryName'] ?></td>
                                     <td><a href="?page=vehicles/update&id=<?= $vehicle['id_vehicle'] ?>"><i class="bi bi-pencil text-black fs-6"></i></td>
                                     <td>
                                         <form class="modal-form" data-name="<?= $vehicle['brand'] . ' ' . $vehicle['model'] ?>" action="?page=vehicles/delete" method="post">

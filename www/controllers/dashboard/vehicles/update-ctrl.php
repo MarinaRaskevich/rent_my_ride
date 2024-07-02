@@ -53,6 +53,10 @@ try {
 
         //L'utilisateur a téléchargé une nouvelle image
         if ($_FILES['picture']['name'] !== '' && $isDeleted === '1') {
+            if ($_FILES['picture']['error'] != 0) {
+                throw new Exception("Une erreur est survenue");
+            }
+
             if ($_FILES['picture']['type'] != 'image/png') {
                 if ($_FILES['picture']['type'] != 'image/jpg') {
                     if ($_FILES['picture']['type'] != 'image/jpeg') {
@@ -63,10 +67,6 @@ try {
 
             if ($_FILES['picture']['size'] > MAX_SIZE) {
                 throw new Exception('Taille maximale de l\'image: 2 Mo');
-            }
-
-            if ($_FILES['picture']['error'] != 0) {
-                throw new Exception("Une erreur est survenue");
             }
 
             $extension = pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);

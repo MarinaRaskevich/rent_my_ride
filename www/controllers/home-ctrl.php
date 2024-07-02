@@ -40,7 +40,7 @@ try {
     // Calcul du 1er article de la page
     $firstItem = ($currentPage * $nbItemsInOnePage) - $nbItemsInOnePage;
 
-    $vehiclesList = $vehicleModel->getAllForClients($categoryId, $firstItem, $nbItemsInOnePage);
+    $vehiclesList = $vehicleModel->getAll($categoryId, $firstItem, $nbItemsInOnePage, null, null);
 } catch (\PDOException $e) {
     $error = $e->getMessage();
     renderView('404');

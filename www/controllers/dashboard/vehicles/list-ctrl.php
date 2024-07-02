@@ -14,7 +14,7 @@ try {
         $order = 'ASC';
     }
     $vehicle = new Vehicle();
-    $vehiclesList = $vehicle->getAllForDashboard($column, $order);
+    $vehiclesList = $vehicle->getAll(null, null, null, $column, $order);
 } catch (\PDOException $e) {
     $error = $e->getMessage();
     renderView('404');

@@ -191,52 +191,49 @@ class Vehicle extends BaseModel
         }
     }
 
-    public function getAllForDashboard($column, $order)
+    /**
+     * Retrieves a list of vehicles with options for filtering, sorting, and pagination.
+     *
+     * @param int|null $id The category ID. If null or 'all', retrieves all categories.
+     * @param int|null $first The index of the first item for pagination. If null, not used.
+     * @param int|null $last The number of items for pagination. If null, not used.
+     * @param string|null $column The column name to sort by. If null, not used.
+     * @param string|null $order The sort order ('ASC' or 'DESC'). If null, not used.
+     * @return array An associative array of vehicles with their categories.
+     */
+    public function getAll($id = null, $first = null, $last = null, $column = null, $order = null)
     {
         if ($column == 'name') {
             $table = 'categories';
         } else {
             $table = 'vehicles';
         }
-        $sql = "SELECT * 
-        FROM `vehicles` 
-        INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-        ORDER BY `$table`.`$column` $order;";
-        $sth = $this->db->query($sql);
+
+        $sql = "SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
+            FROM `vehicles`
+            INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`";
+        $condition = ($id === 'all' || $id === null) ? ' WHERE `vehicles`.`deleted_at` IS NULL' : ' WHERE `categories`.`id_category` = :id_category AND `vehicles`.`deleted_at` IS NULL';
+        $limit =  ($first !== null && $last !== null) ? ' LIMIT :first, :last' : '';
+        $order = ($column !== null && $order !== null) ? " ORDER BY `$table`.`$column` $order;" : '';
+
+        if ($id !== null) {
+            $sth = $this->db->prepare($sql . $condition . $limit);
+            if ($id !== 'all') {
+                $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+            }
+            if ($first !== null && $last !== null) {
+                $sth->bindValue(':first', $first, PDO::PARAM_INT);
+                $sth->bindValue(':last', $last, PDO::PARAM_INT);
+            }
+        } else {
+            $sth = $this->db->query($sql . $condition . $order);
+        };
+
+        $sth->execute();
         $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $vehiclesList;
     }
 
-    public function getAllForClients($id, $first, $last)
-    {
-        if ($id == 'all') {
-            $sql = 'SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
-            FROM `vehicles`
-            INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-            WHERE `vehicles`.`deleted_at` IS NULL
-            LIMIT :first, :last;';
-            $sth = $this->db->prepare($sql);
-            $sth->bindValue(':first', $first, PDO::PARAM_INT);
-            $sth->bindValue(':last', $last, PDO::PARAM_INT);
-            $sth->execute();
-            $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $sql = 'SELECT * FROM (
-            SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
-            FROM `vehicles`
-            INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-            WHERE `categories`.`id_category` = :id_category AND `vehicles`.`deleted_at` IS NULL
-            ) AS filteredVehicles
-            LIMIT :first, :last;';
-            $sth = $this->db->prepare($sql);
-            $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-            $sth->bindValue(':first', $first, PDO::PARAM_INT);
-            $sth->bindValue(':last', $last, PDO::PARAM_INT);
-            $sth->execute();
-            $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
-        }
-        return $vehiclesList;
-    }
 
     public function getOne($id)
     {
@@ -286,7 +283,7 @@ class Vehicle extends BaseModel
         return $vehiclesList;
     }
 
-    public function getAll($id_category): array
+    public function getBrandModel($id_category): array
     {
         $sql = "SELECT `brand`, `model` AS `vehicleName` FROM `vehicles` WHERE `id_category` = :id_category;";
         $sth = $this->db->prepare($sql);
@@ -294,28 +291,6 @@ class Vehicle extends BaseModel
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    //Retourner toutes les données de la base
-    // public function getAll($column, $order, $first, $last)
-    // {
-    //     if ($column == 'name') {
-    //         $table = 'categories';
-    //     } else {
-    //         $table = 'vehicles';
-    //     }
-    //     $sql = "SELECT * 
-    //                 FROM `vehicles` 
-    //                 INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-    //                 ORDER BY `$table`.`$column` $order
-    //                 LIMIT :first, :last;";
-
-    //     $sth = $this->db->prepare($sql);
-    //     $sth->bindValue(':first', $first, PDO::PARAM_INT);
-    //     $sth->bindValue(':last', $last, PDO::PARAM_INT);
-    //     $sth->execute();
-    //     $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
-    //     return $vehiclesList;
-    // }
 
     // public static function getPictureName($id)
     // {

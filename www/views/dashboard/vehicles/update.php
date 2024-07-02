@@ -9,24 +9,24 @@
                     <form method="post" enctype="multipart/form-data" class="vehicle_form">
                         <div class="mb-3">
                             <label for="brand" class="form-label fw-bold">Marque</label>
-                            <input class="form-control" type="text" id="brand" name="brand" maxlength="50" value="<?= $oneVehicle->brand ?>" required>
+                            <input class="form-control" type="text" id="brand" name="brand" maxlength="50" value="<?= $oneVehicle->brand ?? '' ?>" required>
                             <small class="error"><?= $errors['brand'] ?? '' ?></small>
                         </div>
                         <div class="mb-3">
                             <label for="model" class="form-label fw-bold">Modèle</label>
-                            <input class="form-control" type="text" id="model" name="model" maxlength="50" value="<?= $oneVehicle->model ?>" required>
+                            <input class="form-control" type="text" id="model" name="model" maxlength="50" value="<?= $oneVehicle->model ?? '' ?>" required>
                             <small class="error"><?= $errors['model'] ?? '' ?></small>
                         </div>
 
                         <div class="mb-3">
                             <label for="registration" class="form-label fw-bold">Numéro d'immatriculation</label>
-                            <input class="form-control" type="text" id="registration" name="registration" maxlength="10" pattern="<?= REGEX_REGISTRATION ?>" value="<?= $oneVehicle->registration ?>" required>
+                            <input class="form-control" type="text" id="registration" name="registration" maxlength="10" pattern="<?= REGEX_REGISTRATION ?>" value="<?= $oneVehicle->registration ?? '' ?>" required>
                             <small class="error"><?= $errors['registration'] ?? '' ?></small>
                         </div>
 
                         <div class="mb-3">
                             <label for="mileage" class="form-label fw-bold">Kilométrage</label>
-                            <input class="form-control" type="text" id="mileage" name="mileage" pattern="<?= REGEX_MILEAGE ?>" value="<?= $oneVehicle->mileage ?>" required>
+                            <input class="form-control" type="text" id="mileage" name="mileage" pattern="<?= REGEX_MILEAGE ?>" value="<?= $oneVehicle->mileage ?? '' ?>" required>
                             <small class="error"><?= $errors['mileage'] ?? '' ?></small>
                         </div>
 
@@ -45,7 +45,7 @@
                                     <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>
                                 <?php } ?>
                             </select>
-                            <small class="category"><?= $errors['brand'] ?? '' ?></small>
+                            <small class="category"><?= $errors['category_id'] ?? '' ?></small>
                         </div>
 
                         <div class="mb-3">
