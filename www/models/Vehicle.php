@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__ . '/../helpers/BaseModel.php';
-
 
 class Vehicle extends BaseModel
 {
@@ -158,6 +156,41 @@ class Vehicle extends BaseModel
         return $sthExecute;
     }
 
+    //Modifier
+    public function update(): bool
+    {
+        $sql = 'UPDATE `vehicles` 
+            SET `brand` = :brand, `model` = :model, `registration` = :registration, `mileage` = :mileage, `picture` = :picture, `updated_at` = NOW()
+            WHERE `id_vehicle` = :id_vehicle;';
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':brand', $this->getBrand(), PDO::PARAM_STR);
+        $sth->bindValue(':model', $this->getModel(), PDO::PARAM_STR);
+        $sth->bindValue(':registration', $this->getRegistration(), PDO::PARAM_STR);
+        $sth->bindValue(':mileage', $this->getMileage(), PDO::PARAM_INT);
+        $sth->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
+        $sth->bindValue(':id_vehicle', $this->getId_vehicle(), PDO::PARAM_INT);
+        $sth->execute();
+        if ($sth->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Supprimer 
+    public function delete($id): bool
+    {
+        $sql = 'UPDATE `vehicles` SET `deleted_at` = NOW() WHERE `id_vehicle` = :id_vehicle;';
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':id_vehicle', $id);
+        $sth->execute();
+        if ($sth->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getAllForDashboard($column, $order)
     {
         if ($column == 'name') {
@@ -188,10 +221,12 @@ class Vehicle extends BaseModel
             $sth->execute();
             $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
         } else {
-            $sql = 'SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
+            $sql = 'SELECT * FROM (
+            SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
             FROM `vehicles`
             INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-            WHERE `categories`.`id_category` = :id_category
+            WHERE `categories`.`id_category` = :id_category AND `vehicles`.`deleted_at` IS NULL
+            ) AS filteredVehicles
             LIMIT :first, :last;';
             $sth = $this->db->prepare($sql);
             $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
@@ -203,27 +238,6 @@ class Vehicle extends BaseModel
         return $vehiclesList;
     }
 
-    //Modifier
-    public function update(): bool
-    {
-        $sql = 'UPDATE `vehicles` 
-        SET `brand` = :brand, `model` = :model, `registration` = :registration, `mileage` = :mileage, `picture` = :picture, `updated_at` = NOW()
-        WHERE `id_vehicle` = :id_vehicle;';
-        $sth = $this->db->prepare($sql);
-        $sth->bindValue(':brand', $this->getBrand(), PDO::PARAM_STR);
-        $sth->bindValue(':model', $this->getModel(), PDO::PARAM_STR);
-        $sth->bindValue(':registration', $this->getRegistration(), PDO::PARAM_STR);
-        $sth->bindValue(':mileage', $this->getMileage(), PDO::PARAM_INT);
-        $sth->bindValue(':picture', $this->getPicture(), PDO::PARAM_STR);
-        $sth->bindValue(':id_vehicle', $this->getId_vehicle(), PDO::PARAM_INT);
-        $sth->execute();
-        if ($sth->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function getOne($id)
     {
         $sql = 'SELECT * FROM `vehicles` INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category` WHERE `id_vehicle` = :id_vehicle;';
@@ -232,20 +246,6 @@ class Vehicle extends BaseModel
         $sth->execute();
         $oneVehicle = $sth->fetch();
         return $oneVehicle;
-    }
-
-    //Supprimer 
-    public function delete($id): bool
-    {
-        $sql = 'UPDATE `vehicles` SET `deleted_at` = NOW() WHERE `id_vehicle` = :id_vehicle;';
-        $sth = $this->db->prepare($sql);
-        $sth->bindValue(':id_vehicle', $id);
-        $sth->execute();
-        if ($sth->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     //Suppression totale
