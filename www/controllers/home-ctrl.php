@@ -27,8 +27,12 @@ try {
     }
 
     //nombre de voitures dans la base de données
-    $vehicle = new Vehicle();
-    $nbItems = $vehicle->getTotalNumber();
+    $vehicleModel = new Vehicle();
+    if ($categoryId === 'all') {
+        $nbItems = $vehicleModel->getTotal();
+    } else {
+        $nbItems = $vehicleModel->getTotalNumber(intval($categoryId));
+    }
     // nombre d'articles par page
     $nbItemsInOnePage = 8;
     // nombre de pages total
