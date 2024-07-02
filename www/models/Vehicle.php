@@ -258,15 +258,15 @@ class Vehicle extends BaseModel
     }
 
     ///Pagination
-    public function getTotalNumber()
+    public function getTotalNumber($id)
     {
-        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles`;';
-        $sth = $this->db->query($sql);
+        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles` WHERE `vehicles`.`id_category` = :id_category';
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':id_category', $id);
+        $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        $nbItems = (int) $result['totalNumber'];
-        return $nbItems;
+        return $result['totalNumber'];
     }
-
     public function getMatchForSearch($query): array
     {
         $sql = "SELECT `id_vehicle`, `brand`, `model`
