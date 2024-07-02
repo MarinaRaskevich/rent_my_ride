@@ -27,8 +27,12 @@ try {
     }
 
     //nombre de voitures dans la base de données
-    $vehicle = new Vehicle();
-    $nbItems = $vehicle->getTotalNumber();
+    $vehicleModel = new Vehicle();
+    if ($categoryId === 'all') {
+        $nbItems = $vehicleModel->getTotal();
+    } else {
+        $nbItems = $vehicleModel->getTotalNumber(intval($categoryId));
+    }
     // nombre d'articles par page
     $nbItemsInOnePage = 8;
     // nombre de pages total
@@ -36,9 +40,10 @@ try {
     // Calcul du 1er article de la page
     $firstItem = ($currentPage * $nbItemsInOnePage) - $nbItemsInOnePage;
 
-    $vehiclesList = $vehicle->getAllForClients($categoryId, $firstItem, $nbItemsInOnePage);
+    $vehiclesList = $vehicleModel->getAllForClients($categoryId, $firstItem, $nbItemsInOnePage);
 } catch (\PDOException $e) {
-    //throw $th;
+    $error = $e->getMessage();
+    renderView('404');
 }
 
 renderView('home', compact('title', 'categoryList', 'categoryId', 'vehiclesList', 'currentPage', 'pages', 'script'));

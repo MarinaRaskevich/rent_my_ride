@@ -180,6 +180,7 @@ class Vehicle extends BaseModel
             $sql = 'SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
             FROM `vehicles`
             INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
+            WHERE `vehicles`.`deleted_at` IS NULL
             LIMIT :first, :last;';
             $sth = $this->db->prepare($sql);
             $sth->bindValue(':first', $first, PDO::PARAM_INT);
@@ -190,9 +191,12 @@ class Vehicle extends BaseModel
             $sql = 'SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
             FROM `vehicles`
             INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`
-            WHERE `categories`.`id_category` = :id_category;';
+            WHERE `categories`.`id_category` = :id_category
+            LIMIT :first, :last;';
             $sth = $this->db->prepare($sql);
             $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+            $sth->bindValue(':first', $first, PDO::PARAM_INT);
+            $sth->bindValue(':last', $last, PDO::PARAM_INT);
             $sth->execute();
             $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -233,7 +237,7 @@ class Vehicle extends BaseModel
     //Supprimer 
     public function delete($id): bool
     {
-        $sql = 'UPDATE `vehicles` SET `deleted_at` = NOW() WHERE `id_vehicle` = :id_vehicle';
+        $sql = 'UPDATE `vehicles` SET `deleted_at` = NOW() WHERE `id_vehicle` = :id_vehicle;';
         $sth = $this->db->prepare($sql);
         $sth->bindValue(':id_vehicle', $id);
         $sth->execute();
@@ -244,7 +248,7 @@ class Vehicle extends BaseModel
         }
     }
 
-    //Suppression totale + image lié
+    //Suppression totale
     public function totalDelete($id)
     {
         $sql = 'DELETE FROM `vehicles` WHERE `id_vehicle` = :id_vehicle;';
@@ -259,13 +263,14 @@ class Vehicle extends BaseModel
     }
 
     ///Pagination
-    public function getTotalNumber()
+    public function getTotalNumber($id)
     {
-        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles`;';
-        $sth = $this->db->query($sql);
+        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles` WHERE `vehicles`.`id_category` = :id_category';
+        $sth = $this->db->prepare($sql);
+        $sth->bindValue(':id_category', $id);
+        $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
-        $nbItems = (int) $result['totalNumber'];
-        return $nbItems;
+        return $result['totalNumber'];
     }
 
     public function getMatchForSearch($query): array
