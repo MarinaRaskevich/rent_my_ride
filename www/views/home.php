@@ -13,7 +13,7 @@
                     <p class="mb-0 text-secondary">Trier par:</p>
                     <form method="post">
                         <select name="category" id="category" class="form-select me-2">
-                            <option value="all">Toutes catégories</option>
+                            <option value="<?= ALL_CATEGORIES ?>">Toutes catégories</option>
                             <?php foreach ($categoryList as $category) {
                                 $isSelected = ($category['id_category'] == $categoryId) ? 'selected' : ''; ?>
                                 <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>

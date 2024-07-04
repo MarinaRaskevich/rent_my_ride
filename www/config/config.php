@@ -7,6 +7,7 @@ define('PASSWORD', 'example');
 define('REGEX_MILEAGE', '^\d+$');
 define('REGEX_REGISTRATION', '^[0-9A-Za-z-]{0,10}$');
 define('MAX_SIZE', 2 * 1024 * 1024);
+define('ALL_CATEGORIES', '300');
 
 define('REGEX_NAME', '^[a-zA-Z0-9 éèàêîôù\-]*$');
 define('REGEX_PHONE', '^(?:\+33|0)[1-9](?:(?:\d{2}){4}|\d{8})$');

@@ -31,6 +31,11 @@ try {
         // $creationTime->setTimezone($local_timezone);
         // $created_at = $creationTime->format('Y-m-d H:i:s');
 
+        $startdate = new Datetime($startdate);
+        $startdate = date_format($startdate, 'Y-m-d');
+        $enddate = new Datetime($enddate);
+        $enddate = date_format($enddate, 'Y-m-d');
+
         $rules = [
             'lastname' => 'required|max:50|regex:REGEX_NAME',
             'firstname' => 'required|max:50|regex:REGEX_NAME',
