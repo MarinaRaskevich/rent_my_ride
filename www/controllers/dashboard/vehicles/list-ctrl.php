@@ -17,6 +17,7 @@ try {
     $vehiclesList = $vehicle->getAll(null, null, null, $column, $order);
 } catch (\PDOException $e) {
     $error = $e->getMessage();
+    var_dump($error);
     renderView('404');
 }
 

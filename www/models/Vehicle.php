@@ -201,7 +201,7 @@ class Vehicle extends BaseModel
      * @param string|null $order The sort order ('ASC' or 'DESC'). If null, not used.
      * @return array An associative array of vehicles with their categories.
      */
-    public function getAll($id = null, $first = null, $last = null, $column = null, $order = null)
+    public function getAll($id = null, $first = null, $last = null, $column = null, $orderParam = null)
     {
         if ($column == 'name') {
             $table = 'categories';
@@ -212,22 +212,20 @@ class Vehicle extends BaseModel
         $sql = "SELECT `vehicles`.*, `categories`.`name` AS `categoryName`
             FROM `vehicles`
             INNER JOIN `categories` ON `vehicles`.`id_category` = `categories`.`id_category`";
-        $condition = ($id === 'all' || $id === null) ? ' WHERE `vehicles`.`deleted_at` IS NULL' : ' WHERE `categories`.`id_category` = :id_category AND `vehicles`.`deleted_at` IS NULL';
+        $condition = ($id == 0 || $id == null) ? ' WHERE `vehicles`.`deleted_at` IS NULL' : ' WHERE `categories`.`id_category` = :id_category AND `vehicles`.`deleted_at` IS NULL';
         $limit =  ($first !== null && $last !== null) ? ' LIMIT :first, :last' : '';
-        $order = ($column !== null && $order !== null) ? " ORDER BY `$table`.`$column` $order;" : '';
+        $order = ($column !== null && $orderParam !== null) ? " ORDER BY `$table`.`$column` $orderParam;" : '';
 
-        if ($id !== null) {
-            $sth = $this->db->prepare($sql . $condition . $limit);
-            if ($id !== 'all') {
-                $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
-            }
-            if ($first !== null && $last !== null) {
-                $sth->bindValue(':first', $first, PDO::PARAM_INT);
-                $sth->bindValue(':last', $last, PDO::PARAM_INT);
-            }
-        } else {
-            $sth = $this->db->query($sql . $condition . $order);
-        };
+        $sth = $this->db->prepare($sql . $condition . $limit . $order);
+
+        if ($id != 0 && $id != null) {
+            $sth->bindValue(':id_category', $id, PDO::PARAM_INT);
+        }
+
+        if ($first !== null && $last !== null) {
+            $sth->bindValue(':first', $first, PDO::PARAM_INT);
+            $sth->bindValue(':last', $last, PDO::PARAM_INT);
+        }
 
         $sth->execute();
         $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
@@ -260,11 +258,10 @@ class Vehicle extends BaseModel
     }
 
     ///Pagination
-    public function getTotalNumber($id)
+    public function getTotalNumber()
     {
-        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles` WHERE `vehicles`.`id_category` = :id_category';
-        $sth = $this->db->prepare($sql);
-        $sth->bindValue(':id_category', $id);
+        $sql = 'SELECT count(`id_vehicle`) AS `totalNumber` FROM `vehicles`';
+        $sth = $this->db->query($sql);
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         return $result['totalNumber'];
