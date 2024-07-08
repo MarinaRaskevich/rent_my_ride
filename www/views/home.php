@@ -16,25 +16,25 @@
                             <option value="0">Toutes catégories</option>
                             <?php foreach ($categoryList as $category) {
                                 $isSelected = ($category['id_category'] == $categoryId) ? 'selected' : ''; ?>
-                                <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= $category['name'] ?></option>
+                                <option <?= $isSelected ?> value="<?= $category['id_category'] ?>"><?= ucfirst($category['name']) ?></option>
                             <?php } ?>
                         </select>
                     </form>
                 </div>
             </div>
-            <div class="row g-3">
+            <div id="vehicles-cards" class="row g-3">
                 <?php foreach ($vehiclesList as $vehicle) { ?>
                     <div class="col-12 col-lg-3">
                         <div class="card shadow">
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div>
-                                    <h5 class="card-title"><?= $vehicle['brand'] . ' ' . $vehicle['model'] ?></h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary"><?= $vehicle['categoryName'] ?></h6>
+                                    <h5 class="card-title"><?= $vehicle->brand . ' ' . $vehicle->model ?></h5>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary"><?= $vehicle->categoryName ?></h6>
                                 </div>
-                                <img src="/public/uploads/<?= $vehicle['picture'] ?>" alt="" class="w-100">
+                                <img src="/public/uploads/<?= $vehicle->picture ?>" alt="" class="w-100">
                                 <div class="mt-4 d-flex justify-content-between align-items-center">
-                                    <p class="mb-0 fw-bold"><?= $vehicle['price'] ?>€ / par jour</p>
-                                    <a class="btn btn-primary" href="?page=vehicle/detail&id=<?= $vehicle['id_vehicle'] ?>">Réserver</a>
+                                    <p class="mb-0 fw-bold"><?= $vehicle->price ?>€ / par jour</p>
+                                    <a class="btn btn-primary" href="?page=vehicle/detail&id=<?= $vehicle->id_vehicle ?>">Réserver</a>
                                 </div>
                             </div>
                         </div>

@@ -21,22 +21,22 @@
                     </thead>
                     <tbody>
                         <?php foreach ($vehiclesList as $vehicle) {
-                            if (empty($vehicle['deleted_at'])) {
+                            if (empty($vehicle->deleted_at)) {
                         ?>
                                 <tr>
                                     <td class="img-cell">
-                                        <div><img class="w-100" src="/public/uploads/<?= $vehicle['picture'] ?>" alt="voiture"></div>
+                                        <div><img class="w-100" src="/public/uploads/<?= $vehicle->picture ?>" alt="voiture"></div>
                                     </td>
-                                    <td><?= $vehicle['brand'] ?></td>
-                                    <td><?= $vehicle['model'] ?></td>
-                                    <td><?= $vehicle['registration'] ?></td>
-                                    <td><?= $vehicle['mileage'] ?></td>
-                                    <td><?= $vehicle['price'] ?></td>
-                                    <td><?= $vehicle['categoryName'] ?></td>
-                                    <td><a href="?page=vehicles/update&id=<?= $vehicle['id_vehicle'] ?>"><i class="bi bi-pencil text-black fs-6"></i></td>
+                                    <td><?= $vehicle->brand ?></td>
+                                    <td><?= $vehicle->model ?></td>
+                                    <td><?= $vehicle->registration ?></td>
+                                    <td><?= $vehicle->mileage ?></td>
+                                    <td><?= $vehicle->price ?></td>
+                                    <td><?= $vehicle->categoryName ?></td>
+                                    <td><a href="?page=vehicles/update&id=<?= $vehicle->id_vehicle ?>"><i class="bi bi-pencil text-black fs-6"></i></td>
                                     <td>
-                                        <form class="modal-form" data-name="<?= $vehicle['brand'] . ' ' . $vehicle['model'] ?>" action="?page=vehicles/delete" method="post">
-                                            <input type="hidden" name="id_vehicle" value="<?= $vehicle['id_vehicle'] ?>">
+                                        <form class="modal-form" data-name="<?= $vehicle->brand . ' ' . $vehicle->model ?>" action="?page=vehicles/delete" method="post">
+                                            <input type="hidden" name="id_vehicle" value="<?= $vehicle->id_vehicle ?>">
                                             <button type="submit" class="border-0 bg-secondary-subtle"><i class="bi bi-trash3 fs-6"></i></button>
                                         </form>
                                     </td>

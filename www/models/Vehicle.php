@@ -192,15 +192,16 @@ class Vehicle extends BaseModel
     }
 
     /**
-     * Retrieves a list of vehicles with options for filtering, sorting, and pagination.
+     * Récupère une liste de véhicules avec des options pour filtrer, trier et paginer.
      *
-     * @param int|null $id The category ID. If null or 'all', retrieves all categories.
-     * @param int|null $first The index of the first item for pagination. If null, not used.
-     * @param int|null $last The number of items for pagination. If null, not used.
-     * @param string|null $column The column name to sort by. If null, not used.
-     * @param string|null $order The sort order ('ASC' or 'DESC'). If null, not used.
-     * @return array An associative array of vehicles with their categories.
+     * @param int|null $id L'ID de la catégorie. Si null ou '0', récupère toutes les catégories.
+     * @param int|null $first L'index du premier élément pour la pagination. Si null, non utilisé.
+     * @param int|null $last Le nombre d'éléments pour la pagination. Si null, non utilisé.
+     * @param string|null $column Le nom de la colonne pour trier. Si null, non utilisé.
+     * @param string|null $order L'ordre de tri ('ASC' ou 'DESC'). Si null, non utilisé.
+     * @return array Un tableau associatif de véhicules avec leurs catégories.
      */
+
     public function getAll($id = null, $first = null, $last = null, $column = null, $orderParam = null)
     {
         if ($column == 'name') {
@@ -228,7 +229,7 @@ class Vehicle extends BaseModel
         }
 
         $sth->execute();
-        $vehiclesList = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $vehiclesList = $sth->fetchAll();
         return $vehiclesList;
     }
 

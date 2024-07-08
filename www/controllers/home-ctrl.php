@@ -6,6 +6,7 @@ try {
     $currentPage = 1;
     $categoryId = 0;
     $category = new Category();
+    $vehicleModel = new Vehicle();
     $categoryList = $category->getAll();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,8 +21,7 @@ try {
         $currentPage = filter_input(INPUT_GET, 'part', FILTER_SANITIZE_NUMBER_INT);
     }
 
-    //nombre de voitures dans la base de données
-    $vehicleModel = new Vehicle();
+    //nombre de voitures
     if ($currentPage >= 1 && $categoryId > 0) {
         $currentPage = 1;
         $nbItems = count($vehicleModel->getAll($categoryId));
