@@ -10,7 +10,7 @@
         <h1 class="text-center fs-3 fw-bold">Nos voitures</h3>
             <div class="row g-3 mb-3">
                 <div class="col-12 col-lg-3">
-                    <p class="mb-0 text-secondary">Trier par:</p>
+                    <p class="mb-0 text-secondary">Trier par catégorie:</p>
                     <form method="post">
                         <select name="category" id="category" class="form-select me-2">
                             <option value="0">Toutes catégories</option>

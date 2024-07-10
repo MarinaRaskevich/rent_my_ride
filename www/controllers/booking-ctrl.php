@@ -5,7 +5,8 @@ $errors =  [];
 
 try {
     if (!isset($_GET['id'])) {
-        throw new Exception("Cette voiture n'existe pas");
+        // throw new Exception("Cette voiture n'existe pas");
+        redirectToRoute('home');
     };
 
     $id_vehicle = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
@@ -65,21 +66,21 @@ try {
         $errors = Validator::getErrors();
 
         if (empty($errors)) {
-            $pdo = Database::dbConnect();
-            $pdo->beginTransaction(); //désactive le mode autocommit. Lorsque l'autocommit est désactivé, les modifications faites sur la base de données via les instances des objets PDO ne sont pas appliquées tant que vous ne mettez pas fin à la transaction en appelant la fonction PDO::commit(). 
-            $client = new Client($lastname, $firstname, $email, $phone, $city, $zipcode);
-            $client->setBirthday($birthdate);
-            $isOkClient = $client->insert();
-            $id_client = $client->getLastInsertId();
+            $clientModel = new Client($lastname, $firstname, $email, $phone, $city, $zipcode);
+            $clientModel->getDb()->beginTransaction();
+            //désactive le mode autocommit. Lorsque l'autocommit est désactivé, les modifications faites sur la base de données via les instances des objets PDO ne sont pas appliquées tant que vous ne mettez pas fin à la transaction en appelant la fonction PDO::commit(). 
+            $clientModel->setBirthday($birthdate);
+            $isOkClient = $clientModel->insert();
+            $id_client = $clientModel->getLastInsertId();
 
             $rent = new Rent(new DateTime($startdate), new DateTime($enddate), $id_vehicle, $id_client, 'à venir');
             $isOkRent = $rent->insert();
 
             if ($isOkRent && $isOkClient) {
-                $pdo->commit();
+                $clientModel->getDb()->commit();
                 renderView('booking-message', compact('title', 'vehicle'));
             } else {
-                $pdo->rollback();
+                $clientModel->getDb()->rollback();
                 throw new Exception('Une erreur s\'est produite');
             }
         }

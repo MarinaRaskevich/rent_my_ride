@@ -146,11 +146,6 @@ class Client extends BaseModel
         // return $this->db->lastInsertId();
     }
 
-    public function getLastInsertId(): int
-    {
-        return $this->db->lastInsertId();
-    }
-
     // Statictics home page dashboard
     public function getTotal(): int
     {

@@ -14,4 +14,18 @@ class BaseModel
     {
         return $this->db;
     }
+
+
+    public function getLastInsertId(): int
+    {
+        return $this->db->lastInsertId();
+    }
+
+    /**
+     * Get the value of db
+     */
+    public function getDb(): PDO
+    {
+        return $this->db;
+    }
 }
